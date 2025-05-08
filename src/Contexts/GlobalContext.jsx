@@ -10,7 +10,7 @@ const GlobalProvider = ({ children }) => {
   };
 
   return (
-    <GlobalContext.Provider values={values}>{children}</GlobalContext.Provider>
+    <GlobalContext.Provider value={values}>{children}</GlobalContext.Provider>
   );
 };
 

@@ -12,7 +12,6 @@ const App = () => {
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/results/:query" element={<Results />} />
-            <Route path="/products/:id" element={<ProductDetails />} />
           </Route>
         </Routes>
       </BrowserRouter>
