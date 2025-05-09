@@ -2,7 +2,6 @@ import HeaderTopBar from "./Partials/HeaderTopBar"
 import HeaderProdCategories from "./Partials/HeaderProdCategories"
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { FaRegHeart, FaRegUser, FaSearch } from "react-icons/fa";
-import { MdPhotoCamera } from "react-icons/md";
 import { HiMiniSquare3Stack3D } from "react-icons/hi2";
 import { useState, useRef, useEffect } from "react";
 
@@ -51,16 +50,16 @@ const Header = () => {
   return (
     <>
       <HeaderTopBar/>
-      <div className="container flex justify-between py-8">
-        <div className="left-header flex justify-around items-center gap-10">
+      <div className="container flex justify-between py-7 w-full gap-5">
+        <div className="left-header flex justify-center items-center w-full">
           <div className="logo">
             <a href="/">
-              <img src="./Bkea_logo.svg" alt="Bkea Logo" width="100px"/>
+              <img className="mr-4" src="./Bkea_logo.svg" alt="Bkea Logo" width="90px"/>
             </a>
           </div>
-          <div className="search relative z-20 w-[30vw]" ref={searchRef}>
+          <div className="search z-20 w-full" ref={searchRef}>
             <div 
-              className="search-inactive flex items-center border-0 border-gray-300 rounded-3xl py-2 px-3 cursor-pointer"
+              className="mx-4 search-inactive flex items-center border-0 bg-gray-100 border-gray-300 rounded-3xl py-2 px-3 cursor-pointer w-full"
               onClick={handleSearchFocus}
             >
               <FaSearch className="text-gray-500 mr-2" />
@@ -70,7 +69,7 @@ const Header = () => {
             {isSearchActive && (
               <>
                 <div className="fixed inset-0 bg-black/15 z-10" onClick={() => setIsSearchActive(false)}></div>
-                <div className="search-modal fixed top-0 left-60 right-0 z-20 mt-17 bg-white rounded-md shadow-lg border border-gray-200 w-[600px]">
+                <div className="search-modal fixed top-0 left-[10vw] right-0 z-20 mt-17 bg-white rounded-xl shadow-lg border border-gray-200 w-[80vw]">
                   <form action="/results" className="relative flex items-center p-2 border-b border-gray-200">
                     <div className="absolute left-5 text-gray-500">
                       <FaSearch />
@@ -113,26 +112,25 @@ const Header = () => {
             )}
           </div>
         </div>
-        <div className="right-header flex items-center justify-between gap-3">
-          <div className="login hover:bg-gray-300 py-1 px-3 border-0 rounded-2xl">
-            <a href="/login">
+        <div className="right-header flex items-center text-nowrap">
+          <div className="login hover:bg-gray-100 py-1 px-3 border-0 rounded-2xl">
+            <a href="#">
               <FaRegUser className="inline text-2xl pr-2"/>
-              <span>Hej! Accedi</span>
+              <span className="hidden lg:inline text-sm">Hej! Accedi</span>
             </a>
           </div>
-          <div className="wishlist hover:bg-gray-300 p-2 border-0 rounded-2xl">
+          <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl">
             <a href="/wishlist">
               <FaRegHeart />
             </a>
           </div>
-          <div className="cart hover:bg-gray-300 p-2 border-0 rounded-2xl">
-            <a href="/cart">
+          <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl">
+            <a href="#">
               <RiShoppingBasketLine className="text-xl"/>
             </a>
           </div>
         </div>
       </div>
-
       <HeaderProdCategories/>
     </>
   )

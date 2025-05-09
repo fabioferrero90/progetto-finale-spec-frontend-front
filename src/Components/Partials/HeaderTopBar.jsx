@@ -5,10 +5,10 @@ import { AiTwotoneShop } from "react-icons/ai";
 
 const HeaderTopBar = () => {
   return (
-    <div className="px-5 py-2 bg-black text-white text-md">
+    <div className="px-5 py-2 bg-black text-white text-sm">
         <div className="container">
           <div className="flex justify-between items-center">
-            <div classname="flex justify-between items-center">
+            <div className="flex justify-between items-center">
               <TbWorld className="inline text-3xl pr-2"/>
               <span>IT | Italiano</span>
             </div>

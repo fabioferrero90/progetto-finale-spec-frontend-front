@@ -1,6 +1,16 @@
 @import "tailwindcss";
 
+*{
+  font-family: "Noto Sans", sans-serif;
+  font-optical-sizing: auto;
+}
+
 .container {
-  max-width: 1700px;
+  width: 1700px;
+  max-width:95%;
   margin: 0 auto;
+}
+
+.custom-hl {
+  border-bottom: 2px solid #000;
 }
