@@ -1,3 +1,4 @@
+import React from 'react';
 import { TbWorld } from "react-icons/tb";
 import { LuTruck } from "react-icons/lu";
 import { AiTwotoneShop } from "react-icons/ai";
@@ -29,4 +30,4 @@ const HeaderTopBar = () => {
   )
 }
 
-export default HeaderTopBar
+export default React.memo(HeaderTopBar);

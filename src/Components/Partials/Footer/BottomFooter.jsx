@@ -1,3 +1,4 @@
+import React from 'react';
 import { FaFacebook, FaInstagram, FaPinterest, FaYoutube } from "react-icons/fa";
 import { FaXTwitter } from "react-icons/fa6";
 import { TbWorld } from "react-icons/tb";
@@ -60,4 +61,4 @@ const BottomFooter = () => {
   )
 }
 
-export default BottomFooter
+export default React.memo(BottomFooter);

@@ -1,14 +1,15 @@
 const Categories = [
-  { name: "Tavoli e Sedie", img: "tables-chairs.avif"},
-  { name: "Divani e Poltrone", img: "sofas-armchairs.avif"},
-  { name: "Letti e Materassi", img: "beds-mattresses.avif"},
-  { name: "Mobili e Accessori da esterno", img: "outdoor-products.avif"}
+  { name: "Tavoli e Sedie", img: "tables-chairs.avif", slug: "tables-chairs"},
+  { name: "Divani e Poltrone", img: "sofas-armchairs.avif", slug: "sofas-armchairs" },
+  { name: "Letti e Materassi", img: "beds-mattresses.avif", slug: "beds-mattresses" },
+  { name: "Mobili e Accessori da esterno", img: "outdoor-products.avif", slug: "outdoor-products" },
 ]
 
 const Products = [
   {
     id: 1,
     name: "MALM",
+    description: "Elegante letto in legno di betulla con pratico contenitore integrato, perfetto per ottimizzare lo spazio",
     category: "Letti e Materassi",
     createdAt: "2024-01-15",
     updatedAt: "2024-03-10",
@@ -17,11 +18,13 @@ const Products = [
     material: "Legno di betulla",
     color: "Bianco",
     height: 100,
-    storageIncluded: true
+    storageIncluded: "Si",
+    image: "malm-struttura-letto-con-contenitore-bianco__0749127_pe745496_s5.avif"
   },
   {
     id: 2,
     name: "HEMNES",
+    description: "Letto classico in pino massiccio dal design senza tempo, robusto e durevole",
     category: "Letti e Materassi",
     createdAt: "2024-01-16",
     updatedAt: "2024-03-11",
@@ -30,11 +33,13 @@ const Products = [
     material: "Pino massiccio",
     color: "Nero-marrone",
     height: 120,
-    storageIncluded: false
+    storageIncluded: "No",
+    image: "hemnes-letto-divano-3-cassetti-2-materassi-bianco-afjaell-rigido__1180460_pe896336_s5.avif" //immagine di prova di immagini
   },
   {
     id: 3,
     name: "BRIMNES",
+    description: "Letto moderno con ampio spazio contenitivo, ideale per camere da letto di grandi dimensioni",
     category: "Letti e Materassi",
     createdAt: "2024-01-17",
     updatedAt: "2024-03-12",
@@ -43,11 +48,13 @@ const Products = [
     material: "Truciolato",
     color: "Grigio",
     height: 110,
-    storageIncluded: true
+    storageIncluded: "Si",
+    image: "angersby-divano-a-3-posti-knisa-grigio-chiaro__0940370_pe794950_s5 (1).avif"
   },
   {
     id: 4,
     name: "SLATTUM",
+    description: "Letto imbottito dal design minimalista con struttura in metallo, comfort ed eleganza a prezzo accessibile",
     category: "Letti e Materassi",
     createdAt: "2024-01-18",
     updatedAt: "2024-03-13",
@@ -56,11 +63,13 @@ const Products = [
     material: "Metallo",
     color: "Beige",
     height: 90,
-    storageIncluded: false
+    storageIncluded: "No",
+    image: "slattum-struttura-letto-imbottita-vissle-grigio-scuro__1259335_pe926650_s5.avif"
   },
   {
     id: 5,
     name: "NEIDEN",
+    description: "Letto essenziale in pino massiccio, soluzione economica e funzionale per ogni ambiente",
     category: "Letti e Materassi",
     createdAt: "2024-01-19",
     updatedAt: "2024-03-14",
@@ -69,11 +78,13 @@ const Products = [
     material: "Pino massiccio",
     color: "Naturale",
     height: 85,
-    storageIncluded: false
+    storageIncluded: "No",
+    image: "neiden-struttura-letto-pino__0749132_pe745501_s5.avif"
   },
   {
     id: 6,
     name: "TARVA",
+    description: "Letto in pino massiccio non trattato, personalizzabile con vernici o oli per legno",
     category: "Letti e Materassi",
     createdAt: "2024-01-20",
     updatedAt: "2024-03-15",
@@ -82,11 +93,13 @@ const Products = [
     material: "Pino massiccio",
     color: "Naturale",
     height: 95,
-    storageIncluded: false
+    storageIncluded: "No",
+    image: "tarva-struttura-letto-mordente-bianco-luroey__1273534_pe930090_s5.avif"
   },
   {
     id: 7,
     name: "KLEPPSTAD",
+    description: "Letto moderno in acciaio, leggero e resistente, ideale per spazi contenuti",
     category: "Letti e Materassi",
     createdAt: "2024-01-21",
     updatedAt: "2024-03-16",
@@ -95,11 +108,13 @@ const Products = [
     material: "Acciaio",
     color: "Bianco",
     height: 88,
-    storageIncluded: false
+    storageIncluded: "No",
+    image: "kleppstad-struttura-letto-bianco-vissle-beige__1035340_pe840527_s5.avif"
   },
   {
     id: 8,
     name: "SONGESAND",
+    description: "Letto con cassetti integrati, perfetto per chi cerca funzionalità e stile classico",
     category: "Letti e Materassi",
     createdAt: "2024-01-22",
     updatedAt: "2024-03-17",
@@ -108,11 +123,13 @@ const Products = [
     material: "Truciolato",
     color: "Marrone",
     height: 105,
-    storageIncluded: true
+    storageIncluded: "Si",
+    image: "songesand-struttura-letto-bianco-luroey__0638583_pe699000_s5.avif"
   },
   {
     id: 9,
     name: "HAUGA",
+    description: "Letto imbottito in tessuto con contenitore, comfort e praticità in un unico prodotto",
     category: "Letti e Materassi",
     createdAt: "2024-01-23",
     updatedAt: "2024-03-18",
@@ -121,11 +138,13 @@ const Products = [
     material: "Tessuto",
     color: "Grigio",
     height: 108,
-    storageIncluded: true
+    storageIncluded: "Si",
+    image: "ramnefjaell-struttura-letto-imbottita-kilanda-beige-chiaro-luroey__1258172_pe927371_s5.avif"
   },
   {
     id: 10,
     name: "IDANAS",
+    description: "Letto di lusso in legno massello con ampio contenitore, massima qualità e raffinatezza",
     category: "Letti e Materassi",
     createdAt: "2024-01-24",
     updatedAt: "2024-03-19",
@@ -134,11 +153,13 @@ const Products = [
     material: "Legno massello",
     color: "Bianco",
     height: 115,
-    storageIncluded: true
+    storageIncluded: "Si",
+    image: "idanaes-letto-imbottito-con-contenitore-gunnared-grigio-scuro__1012432_pe829085_s5.avif"
   },
   {
     id: 11,
     name: "EKTORP",
+    description: "Divano classico a 3 posti con rivestimento lavabile, comfort tradizionale e praticità",
     category: "Divani e Poltrone",
     createdAt: "2024-01-25",
     updatedAt: "2024-03-20",
@@ -146,12 +167,14 @@ const Products = [
     seats: 3,
     material: "Tessuto",
     color: "Beige",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "ektorp-divano-a-3-posti-hakebo-grigio-verde__1194851_pe902101_s5.avif"
   },
   {
     id: 12,
     name: "KIVIK",
+    description: "Ampio divano in pelle a 4 posti, design moderno e materiali premium",
     category: "Divani e Poltrone",
     createdAt: "2024-01-26",
     updatedAt: "2024-03-21",
@@ -159,12 +182,14 @@ const Products = [
     seats: 4,
     material: "Pelle",
     color: "Nero",
-    reclinabile: false,
-    washableCover: false
+    reclinabile: "No",
+    washableCover: "No",
+    image: "kivik-divano-a-3-posti-tibbleby-beige-grigio__1056144_pe848277_s5.avif"
   },
   {
     id: 13,
     name: "LANDSKRONA",
+    description: "Divano in pelle di alta qualità, design scandinavo elegante e raffinato",
     category: "Divani e Poltrone",
     createdAt: "2024-01-27",
     updatedAt: "2024-03-22",
@@ -172,12 +197,14 @@ const Products = [
     seats: 3,
     material: "Pelle",
     color: "Marrone",
-    reclinabile: false,
-    washableCover: false
+    reclinabile: "No",
+    washableCover: "No",
+    image: "soederhamn-elemento-a-3-posti-fridtuna-beige-chiaro__1057705_pe848919_s5.avif"
   },
   {
     id: 14,
     name: "VIMLE",
+    description: "Divano reclinabile compatto, perfetto per il relax con rivestimento lavabile",
     category: "Divani e Poltrone",
     createdAt: "2024-01-28",
     updatedAt: "2024-03-23",
@@ -185,12 +212,14 @@ const Products = [
     seats: 2,
     material: "Tessuto",
     color: "Grigio",
-    reclinabile: true,
-    washableCover: true
+    reclinabile: "Si",
+    washableCover: "Si",
+    image: "vimle-divano-a-2-posti-con-braccioli-larghi-gunnared-grigio-fumo__1029985_pe836073_s5.avif"
   },
   {
     id: 15,
     name: "SODERHAMN",
+    description: "Divano componibile moderno a 4 posti, versatile e confortevole",
     category: "Divani e Poltrone",
     createdAt: "2024-01-29",
     updatedAt: "2024-03-24",
@@ -198,12 +227,14 @@ const Products = [
     seats: 4,
     material: "Tessuto",
     color: "Blu",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "angersby-divano-a-3-posti-knisa-grigio-chiaro__0940370_pe794950_s5 (1).avif"
   },
   {
     id: 16,
     name: "GRONLID",
+    description: "Divano accogliente con rivestimento in tessuto verde, perfetto per ambienti familiari",
     category: "Divani e Poltrone",
     createdAt: "2024-01-30",
     updatedAt: "2024-03-25",
@@ -211,12 +242,14 @@ const Products = [
     seats: 3,
     material: "Tessuto",
     color: "Verde",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "ektorp-divano-a-3-posti-kilanda-beige-chiaro__1194853_pe902103_s5.avif"
   },
   {
     id: 17,
     name: "FARLOV",
+    description: "Divano elegante con rivestimento bianco lavabile, stile contemporaneo e comfort superiore",
     category: "Divani e Poltrone",
     createdAt: "2024-01-31",
     updatedAt: "2024-03-26",
@@ -224,12 +257,14 @@ const Products = [
     seats: 3,
     material: "Tessuto",
     color: "Bianco",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "kivik-divano-a-3-posti-grann-bomstad-nero__0137863_pe296632_s5.avif"
   },
   {
     id: 18,
     name: "STOCKSUND",
+    description: "Divano compatto dal design classico, ideale per spazi ridotti",
     category: "Divani e Poltrone",
     createdAt: "2024-02-01",
     updatedAt: "2024-03-27",
@@ -237,12 +272,14 @@ const Products = [
     seats: 2,
     material: "Tessuto",
     color: "Beige",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "linanaes-divano-a-3-posti-vissle-grigio-scuro__1013898_pe829450_s5.avif"
   },
   {
     id: 19,
     name: "LIDHULT",
+    description: "Divano in pelle di lusso reclinabile, massimo comfort per tutta la famiglia",
     category: "Divani e Poltrone",
     createdAt: "2024-02-02",
     updatedAt: "2024-03-28",
@@ -250,12 +287,14 @@ const Products = [
     seats: 4,
     material: "Pelle",
     color: "Marrone",
-    reclinabile: true,
-    washableCover: false
+    reclinabile: "Si",
+    washableCover: "No",
+    image: "hemnes-letto-divano-3-cassetti-2-materassi-bianco-afjaell-rigido__1180460_pe896336_s5.avif"
   },
   {
     id: 20,
     name: "UPPLAND",
+    description: "Divano pratico ed economico con rivestimento lavabile, ottimo rapporto qualità-prezzo",
     category: "Divani e Poltrone",
     createdAt: "2024-02-03",
     updatedAt: "2024-03-29",
@@ -263,138 +302,159 @@ const Products = [
     seats: 3,
     material: "Tessuto",
     color: "Grigio",
-    reclinabile: false,
-    washableCover: true
+    reclinabile: "No",
+    washableCover: "Si",
+    image: "ektorp-divano-a-3-posti-kilanda-beige-chiaro__1194853_pe902103_s5.avif"
   },
   {
     id: 21,
     name: "EKEDALEN",
+    description: "Tavolo allungabile in quercia per 6 persone, versatile e robusto",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-04",
     updatedAt: "2024-03-30",
     price: 299.99,
     seats: 6,
     material: "Legno di quercia",
-    extendable: true,
+    extendable: "Si",
     length: 180,
-    width: 90
+    width: 90,
+    image: "ekedalen-tavolo-allungabile-bianco__0736965_pe740829_s5.avif"
   },
   {
     id: 22,
     name: "INGATORP",
+    description: "Tavolo rotondo allungabile in betulla, elegante e funzionale",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-05",
     updatedAt: "2024-03-31",
     price: 399.99,
     seats: 4,
     material: "Legno di betulla",
-    extendable: true,
+    extendable: "Si",
     length: 155,
-    width: 87
+    width: 87,
+    image: "ingatorp-tavolo-allungabile-bianco__0737091_pe740881_s5.avif"
   },
   {
     id: 23,
     name: "LANEBERG",
+    description: "Tavolo moderno in acciaio allungabile, pratico e resistente",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-06",
     updatedAt: "2024-04-01",
     price: 199.99,
     seats: 4,
     material: "Acciaio",
-    extendable: true,
+    extendable: "Si",
     length: 130,
-    width: 80
+    width: 80,
+    image: "laneberg-tavolo-allungabile-bianco__0722925_pe733775_s5.avif"
   },
   {
     id: 24,
     name: "NORDVIKEN",
+    description: "Grande tavolo allungabile in pino, perfetto per cene in famiglia",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-07",
     updatedAt: "2024-04-02",
     price: 349.99,
     seats: 6,
     material: "Legno di pino",
-    extendable: true,
+    extendable: "Si",
     length: 210,
-    width: 90
+    width: 90,
+    image: "nordviken-tavolo-allungabile-mordente-anticato__0832851_pe777857_s5.avif"
   },
   {
     id: 25,
     name: "MELLTORP",
+    description: "Tavolo compatto in acciaio, soluzione pratica per spazi ridotti",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-08",
     updatedAt: "2024-04-03",
     price: 149.99,
     seats: 4,
     material: "Acciaio",
-    extendable: false,
+    extendable: "No",
     length: 125,
-    width: 75
+    width: 75,
+    image: "melltorp-tavolo-bianco__0737266_pe740964_s5.avif"
   },
   {
     id: 26,
     name: "LERHAMN",
+    description: "Tavolo rustico in pino, design tradizionale e costruzione robusta",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-09",
     updatedAt: "2024-04-04",
     price: 249.99,
     seats: 4,
     material: "Legno di pino",
-    extendable: false,
+    extendable: "No",
     length: 118,
-    width: 74
+    width: 74,
+    image: "lisabo-tavolo-impiallacciatura-di-frassino__0737105_pe740883_s5.avif"
   },
   {
     id: 27,
     name: "INGO",
+    description: "Tavolo essenziale in pino, versatile e facile da abbinare",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-10",
     updatedAt: "2024-04-05",
     price: 179.99,
     seats: 4,
     material: "Legno di pino",
-    extendable: false,
+    extendable: "No",
     length: 120,
-    width: 75
+    width: 75,
+    image: "ingo-tavolo-pino__0737092_pe740877_s5.avif"
   },
   {
     id: 28,
     name: "GAMLEBY",
+    description: "Tavolo allungabile in stile country, charm rustico e funzionalità",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-11",
     updatedAt: "2024-04-06",
     price: 329.99,
     seats: 6,
     material: "Legno di pino",
-    extendable: true,
+    extendable: "Si",
     length: 170,
-    width: 85
+    width: 85,
+    image: "pinntorp-tavolo-mordente-marrone-chiaro-mordente-bianco__1118109_pe872932_s5.avif"
   },
   {
     id: 29,
     name: "JOKKMOKK",
+    description: "Set tavolo e sedie in pino, soluzione completa dal design classico",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-12",
     updatedAt: "2024-04-07",
     price: 199.99,
     seats: 4,
     material: "Legno di pino",
-    extendable: false,
+    extendable: "No",
     length: 118,
-    width: 74
+    width: 74,
+    image: "sandsberg-adde-tavolo-e-4-sedie-nero-nero__1016431_pe830392_s5.avif"
   },
   {
     id: 30,
     name: "SKOGSTA",
+    description: "Tavolo grande in acacia massiccia, perfetto per grandi riunioni familiari",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-13",
     updatedAt: "2024-04-08",
     price: 449.99,
     seats: 8,
     material: "Legno di acacia",
-    extendable: false,
+    extendable: "No",
     length: 235,
-    width: 100
+    width: 100,
+    image: "skogsta-tavolo-acacia-nero__0546603_pe656255_s5.avif"
   }
 ]
 

@@ -1,6 +1,10 @@
-import {Categories, HeaderProdMenu} from '../../Data/DummyData';
+import React from 'react';
+import {Categories, HeaderProdMenu} from '../../../Data/DummyData';
+import { useNavigate } from 'react-router-dom';
 
 const HeaderProdCategories = () => {
+  const navigate = useNavigate();
+  
   return (
     <>
       <div className="container">
@@ -12,7 +16,7 @@ const HeaderProdCategories = () => {
         </div>
         <div className="flex flex-wrap gap-10">
           {Categories.map((category, index) => (
-            <div key={index} className="flex flex-col items-center gap-2 cursor-pointer hover:underline">
+            <div key={index} className="flex flex-col items-center gap-2 cursor-pointer hover:underline" onClick={() => (navigate(`/category/${category.slug}`))}>
               <img src={`/src/assets/imgs/categories/${category.img}`} alt={category.name} width="100px"/>
               <span className="text-xs">{category.name}</span>
             </div>
@@ -25,4 +29,4 @@ const HeaderProdCategories = () => {
   )
 }
 
-export default HeaderProdCategories
+export default React.memo(HeaderProdCategories);

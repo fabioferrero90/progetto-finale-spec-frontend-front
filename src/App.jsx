@@ -2,7 +2,11 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { GlobalProvider } from "./Contexts/GlobalContext";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
+import Category from "./Pages/Category";
 import Results from "./Pages/Results";
+import NotFound from "./Pages/NotFound";
+import Wishlist from "./Pages/Wishlist";
+import Cart from "./Pages/Cart";
 
 const App = () => {
   return (
@@ -11,7 +15,11 @@ const App = () => {
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />
+            <Route path="/category/:category" element={<Category />} />
             <Route path="/results/:query" element={<Results />} />
+            <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/cart" element={<Cart />} />
+            <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>
       </BrowserRouter>

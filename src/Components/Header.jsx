@@ -1,14 +1,16 @@
-import HeaderTopBar from "./Partials/HeaderTopBar"
-import HeaderProdCategories from "./Partials/HeaderProdCategories"
+import HeaderTopBar from "./Partials/Header/HeaderTopBar"
+import HeaderProdCategories from "./Partials/Header/HeaderProdCategories"
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { FaRegHeart, FaRegUser, FaSearch } from "react-icons/fa";
 import { HiMiniSquare3Stack3D } from "react-icons/hi2";
-import { useState, useRef, useEffect } from "react";
+import React, { useState, useRef, useEffect } from "react";
+import { useGlobalContext } from "../Contexts/GlobalContext";
 
 const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchRef = useRef(null);
+  const { wishlist, cart } = useGlobalContext();
 
   const popularSearches = [
     "scrivania",
@@ -54,7 +56,7 @@ const Header = () => {
         <div className="left-header flex justify-center items-center w-full">
           <div className="logo">
             <a href="/">
-              <img className="mr-4" src="./Bkea_logo.svg" alt="Bkea Logo" width="90px"/>
+              <img className="mr-4" src="/src/assets/imgs/Bkea_logo.svg" alt="Bkea Logo" width="90px"/>
             </a>
           </div>
           <div className="search z-20 w-full" ref={searchRef}>
@@ -119,14 +121,24 @@ const Header = () => {
               <span className="hidden lg:inline text-sm">Hej! Accedi</span>
             </a>
           </div>
-          <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl">
+          <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
             <a href="/wishlist">
               <FaRegHeart />
+              {wishlist.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {wishlist.length}
+                </span>
+              )}
             </a>
           </div>
-          <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl">
-            <a href="#">
+          <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
+            <a href="/cart">
               <RiShoppingBasketLine className="text-xl"/>
+              {cart.length > 0 && (
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                  {cart.length}
+                </span>
+              )}
             </a>
           </div>
         </div>
@@ -136,4 +148,4 @@ const Header = () => {
   )
 }
 
-export default Header
+export default React.memo(Header);

@@ -1,6 +1,6 @@
 import React from 'react'
 import RecallBanner from './Partials/RecallBanner'
-import BottomFooter from './Partials/BottomFooter'
+import BottomFooter from './Partials/Footer/BottomFooter'
 
 const Footer = () => {
   return (
@@ -90,4 +90,4 @@ const Footer = () => {
   )
 }
 
-export default Footer
+export default React.memo(Footer);
