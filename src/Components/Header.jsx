@@ -124,17 +124,17 @@ const Header = () => {
             </a>
           </div>
           <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl relative cursor-pointer">
-            <div onClick={navigate("/wishlist")}>
+            <a onClick={() => navigate("/wishlist")}>
               <FaRegHeart />
               {wishlist.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                   {wishlist.length}
                 </span>
               )}
-            </div>
+            </a>
           </div>
           <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
-            <a href="/cart">
+            <a onClick={() => navigate("/cart")}>
               <RiShoppingBasketLine className="text-xl"/>
               {cart.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
