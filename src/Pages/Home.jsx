@@ -6,7 +6,7 @@ const Home = () => {
     {
       id: 1,
       title: "Scegli il tuo stile e goditi il tuo spazio all'aperto",
-      image: "./src/assets/imgs/home/image_0.39af1a014227cab6e281.avif",
+      image: "./imgs/home/image_0.39af1a014227cab6e281.avif",
       link: "#",
       product: {
         name: "NÄMMARÖ",
@@ -17,14 +17,14 @@ const Home = () => {
     {
       id: 2,
       title: "La collezione STOCKHOLM 2025 è tornata",
-      image: "./src/assets/imgs/home/PH189345.avif",
+      image: "./imgs/home/PH189345.avif",
       link: "#",
       tag: "Novità"
     },
     {
       id: 3,
       title: "Scegli la consegna dei mobili in casa a €59",
-      image: "./src/assets/imgs/home/PH169922.avif",
+      image: "./imgs/home/PH169922.avif",
       link: "#"
     }
   ];
@@ -33,26 +33,26 @@ const Home = () => {
     {
       id: 1,
       title: "Partecipa al concorso \"Ciak, si vince con BKEA\"",
-      image: "/src/assets/imgs/home/webimage-PH185492.avif",
+      image: "/imgs/home/webimage-PH185492.avif",
       link: "#"
     },
     {
       id: 2,
       title: "Lo sconto è servito",
-      image: "/src/assets/imgs/home/PH203262.avif",
+      image: "/imgs/home/PH203262.avif",
       link: "#",
       tag: "BKEA Family"
     },
     {
       id: 3,
       title: "Goditi subito i tuoi acquisti, pagali con calma a tasso zero",
-      image: "/src/assets/imgs/home/SE-ENERGY029-crop-43.webp",
+      image: "/imgs/home/SE-ENERGY029-crop-43.webp",
       link: "#"
     },
     {
       id: 4,
       title: "Scopri tutte le nostre soluzioni energetiche",
-      image: "/src/assets/imgs/home/-SE-ENERGY018-crop-11.webp",
+      image: "/imgs/home/-SE-ENERGY018-crop-11.webp",
       link: "#"
     }
   ];

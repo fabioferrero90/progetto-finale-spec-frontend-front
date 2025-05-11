@@ -41,7 +41,7 @@ const ProductCard = ({ product, isWishlist }) => {
     <div className="product-card flex flex-col">
       <div className="product-image mb-4 bg-gray-100 rounded">
         <img 
-          src={`/src/assets/imgs/products/${product.image}`} 
+          src={`/imgs/products/${product.image}`} 
           alt={product.name} 
           className="w-full h-48 object-cover"
         />

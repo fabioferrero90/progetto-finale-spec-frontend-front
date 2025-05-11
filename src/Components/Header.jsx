@@ -58,7 +58,7 @@ const Header = () => {
         <div className="left-header flex justify-center items-center w-full">
           <div className="logo">
             <a href="/">
-              <img className="mr-4" src="/src/assets/imgs/Bkea_logo.svg" alt="Bkea Logo" width="90px"/>
+              <img className="mr-4" src="/imgs/Bkea_logo.svg" alt="Bkea Logo" width="90px"/>
             </a>
           </div>
           <div className="search z-20 w-full" ref={searchRef}>

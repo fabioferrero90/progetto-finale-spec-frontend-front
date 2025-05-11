@@ -17,7 +17,7 @@ const HeaderProdCategories = () => {
         <div className="flex flex-wrap gap-10">
           {Categories.map((category, index) => (
             <div key={index} className="flex flex-col items-center gap-2 cursor-pointer hover:underline" onClick={() => (navigate(`/category/${category.slug}`))}>
-              <img src={`/src/assets/imgs/categories/${category.img}`} alt={category.name} width="100px"/>
+              <img src={`/imgs/categories/${category.img}`} alt={category.name} width="100px"/>
               <span className="text-xs">{category.name}</span>
             </div>
           ))}

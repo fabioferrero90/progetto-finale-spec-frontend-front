@@ -16,16 +16,16 @@ const BottomFooter = () => {
           <FaYoutube className="text-gray-500 inline text-3xl p-1 cursor-pointer hover:border-2 border-gray-300 rounded-3xl"/>
         </div>
         <div className="payments flex gap-6">
-          <img src="/src/assets/imgs/payments/master-card.svg" alt="mastercard payment" />
-          <img src="/src/assets/imgs/payments/visa.svg" alt="visa payment" />
-          <img src="/src/assets/imgs/payments/american-express.svg" alt="amex payment" />
-          <img src="/src/assets/imgs/payments/paypal.svg" alt="paypal payment" />
-          <img src="/src/assets/imgs/payments/ikea-gift-card.svg" alt="giftcard payment" />
-          <img src="/src/assets/imgs/payments/apple-pay.svg" alt="applepay payment" />
-          <img src="/src/assets/imgs/payments/google-pay.svg" alt="googlepay payment" />
-          <img src="/src/assets/imgs/payments/master-card-id-check.svg" alt="mc-idcheck payment" />
-          <img src="/src/assets/imgs/payments/visa-secure.svg" alt="visa-secure payment" />
-          <img src="/src/assets/imgs/payments/american-express-safe-key.svg" alt="amex-esk payment" />
+          <img src="/imgs/payments/master-card.svg" alt="mastercard payment" />
+          <img src="/imgs/payments/visa.svg" alt="visa payment" />
+          <img src="/imgs/payments/american-express.svg" alt="amex payment" />
+          <img src="/imgs/payments/paypal.svg" alt="paypal payment" />
+          <img src="/imgs/payments/ikea-gift-card.svg" alt="giftcard payment" />
+          <img src="/imgs/payments/apple-pay.svg" alt="applepay payment" />
+          <img src="/imgs/payments/google-pay.svg" alt="googlepay payment" />
+          <img src="/imgs/payments/master-card-id-check.svg" alt="mc-idcheck payment" />
+          <img src="/imgs/payments/visa-secure.svg" alt="visa-secure payment" />
+          <img src="/imgs/payments/american-express-safe-key.svg" alt="amex-esk payment" />
         </div>
         <div className="ml-auto">
           <button className="border-2 rounded-4xl px-3 py-2 flex">

@@ -96,7 +96,7 @@ const Category = () => {
       </div>
       {products.length === 0 ? (
         <div className="no-products flex flex-col justify-center items-center">
-          <img className="max-w-[200px]" src="/src/assets/imgs/notfound.jpg" alt=""/>
+          <img className="max-w-[200px]" src="/imgs/notfound.jpg" alt=""/>
           <p className="font-semibold">Non ci sono prodotti in questa categoria.</p>
           <p>Prova a cercare altrove...un mondo di prodotti BKEA ti aspetta!</p>
         </div>
