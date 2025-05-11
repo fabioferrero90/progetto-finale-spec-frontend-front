@@ -124,7 +124,7 @@ const Header = () => {
             </a>
           </div>
           <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl relative cursor-pointer">
-            <div onClick={Navigate("/wishlist")}>
+            <div onClick={navigate("/wishlist")}>
               <FaRegHeart />
               {wishlist.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
