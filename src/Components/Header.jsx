@@ -5,8 +5,10 @@ import { FaRegHeart, FaRegUser, FaSearch } from "react-icons/fa";
 import { HiMiniSquare3Stack3D } from "react-icons/hi2";
 import React, { useState, useRef, useEffect } from "react";
 import { useGlobalContext } from "../Contexts/GlobalContext";
+import { useNavigate } from "react-router-dom";
 
 const Header = () => {
+  const navigate = useNavigate();
   const [isSearchActive, setIsSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
   const searchRef = useRef(null);
@@ -121,15 +123,15 @@ const Header = () => {
               <span className="hidden lg:inline text-sm">Hej! Accedi</span>
             </a>
           </div>
-          <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
-            <a href="/wishlist">
+          <div className="wishlist hover:bg-gray-100 p-2 border-0 rounded-2xl relative cursor-pointer">
+            <div onClick={Navigate("/wishlist")}>
               <FaRegHeart />
               {wishlist.length > 0 && (
                 <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
                   {wishlist.length}
                 </span>
               )}
-            </a>
+            </div>
           </div>
           <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
             <a href="/cart">
