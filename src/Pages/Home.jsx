@@ -6,7 +6,7 @@ const Home = () => {
     {
       id: 1,
       title: "Scegli il tuo stile e goditi il tuo spazio all'aperto",
-      image: "/src/assets/imgs/home/image_0.39af1a014227cab6e281.avif",
+      image: "./src/assets/imgs/home/image_0.39af1a014227cab6e281.avif",
       link: "#",
       product: {
         name: "NÄMMARÖ",
@@ -17,14 +17,14 @@ const Home = () => {
     {
       id: 2,
       title: "La collezione STOCKHOLM 2025 è tornata",
-      image: "/src/assets/imgs/home/PH189345.avif",
+      image: "./src/assets/imgs/home/PH189345.avif",
       link: "#",
       tag: "Novità"
     },
     {
       id: 3,
       title: "Scegli la consegna dei mobili in casa a €59",
-      image: "/src/assets/imgs/home/PH169922.avif",
+      image: "./src/assets/imgs/home/PH169922.avif",
       link: "#"
     }
   ];
