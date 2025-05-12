@@ -19,20 +19,46 @@ const GlobalProvider = ({ children }) => {
     return savedCart ? JSON.parse(savedCart) : [];
   });
 
+  const [notifications, setNotifications] = useState([]);
+
+  function addNotification(title, message){
+      const newNotification = {
+          id: Date.now(), // ID univoco per ogni notifica
+          title,
+          message
+      };
+      setTimeout(() => {
+          removeNotification(newNotification.id);
+      }, 2000);
+      setNotifications(prev => [...prev, newNotification]);
+  };
+
+  function removeNotification(id){
+      setNotifications(prev => prev.filter(notification => notification.id !== id));
+  };
+
+
   const handleAddToWishlist = (product) => {
     if (!wishlist.includes(product)) {
       setWishlist([...wishlist, product]);
+      addNotification('Aggiunto alla lista', `${product.name} è stato aggiunto alla wishlist!`);
+    } else {
+      addNotification('Prodotto gia presente', `${product.name} è già presente nella wishlist!`);
     }
   }
 
   const handleAddToCompare = (product) => {
     if (compareList.length === 5) {
-      alert("Puoi confrontare al massimo 5 prodotti");
+      addNotification('Limite Raggiunto', `Puoi confrontare al massimo 5 prodotti`);
       return;
     }
     if (!compareList.includes(product)) {
       setCompareList([...compareList, product]);
+      addNotification('Aggiunto al confronto', `${product.name} è stato aggiunto al confronto`);
+    } else {
+      addNotification('Prodotto gia presente', `${product.name} è già presente nel confronto`);
     }
+
   }
 
   const handleAddToCart = (product) => {
@@ -47,6 +73,7 @@ const GlobalProvider = ({ children }) => {
           : item
       ));
     }
+    addNotification('Aggiunto al carrello', `${product.name} è stato aggiunto al carrello`);
   }
 
   useEffect(() => {
@@ -70,7 +97,10 @@ const GlobalProvider = ({ children }) => {
     setCart,
     handleAddToWishlist,
     handleAddToCompare,
-    handleAddToCart
+    handleAddToCart,
+    notifications,
+    addNotification,
+    removeNotification
   };
 
   return (

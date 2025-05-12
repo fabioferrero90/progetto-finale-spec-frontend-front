@@ -2,6 +2,7 @@ import {Outlet} from 'react-router-dom'
 import Header from '../Components/Header'
 import Footer from '../Components/Footer'
 import CompareModal from '../Components/CompareModal';
+import NotificationModal from '../Components/NotificationModal';
 
 const headerMenu = [
   { route: "/", name: "Hej! Accedi", key: "login" },
@@ -14,6 +15,7 @@ const DefaultLayout = () => {
       <main><Outlet /></main>
       <footer><Footer /></footer>
       <section><CompareModal /></section>
+      <section><NotificationModal /></section>
     </div>
   )
 }

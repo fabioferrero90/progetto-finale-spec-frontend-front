@@ -3,12 +3,12 @@ import { useGlobalContext } from '../Contexts/GlobalContext'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const CompareModal = () => {
-    const {compareList, setCompareList} = useGlobalContext()
+    const {compareList, setCompareList, addNotification} = useGlobalContext()
     const navigate = useNavigate()
     const location = useLocation()
 
     // Verifica se siamo in una pagina che contiene ProductGrid
-    const pagesWithProductGrid = ['/category', '/wishlist', '/product']
+    const pagesWithProductGrid = ['/category', '/wishlist', '/product', '/results']
     const shouldShowModal = pagesWithProductGrid.some(path => location.pathname.includes(path))
 
     if (compareList.length === 0 || !shouldShowModal) {
@@ -21,7 +21,7 @@ const CompareModal = () => {
                 <h3 className="text-nowrap">Confronta prodotti:</h3>
                 <span className="pl-3 font-bold">{compareList.length}</span>
             </div>
-            <div className="flex w-full">
+            <div className="flex justify-end w-full">
                 <button 
                     className="bg-blue-600 text-white ml-3 px-2 py-1 border-0 rounded-xl cursor-pointer"
                     onClick={() => navigate("/compare")}>
@@ -29,7 +29,10 @@ const CompareModal = () => {
                 </button>
                 <button 
                     className="bg-gray-600 text-white ml-3 px-2 py-1 border-0 rounded-xl cursor-pointer"
-                    onClick={() => setCompareList([])}>
+                    onClick={() => {
+                        setCompareList([]);
+                        addNotification("Lista svuotata", "La lista dei prodotti da confrontare è stata svuotata")
+                    }}>
                         <span className="text-nowrap">Pulisci lista</span>  
                 </button>
             </div>

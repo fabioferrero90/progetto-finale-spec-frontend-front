@@ -66,7 +66,7 @@ const Compare = () => {
                 ))}
               </tr>
               {Object.keys(compareList[0] || {}).map((key) => {
-                if (!['id', 'image', 'name', 'category', 'description', 'price', 'createdAt', 'updatedAt'].includes(key)) {
+                if (!['id', 'image', 'name', 'rating', 'reviews', 'category', 'description', 'price', 'createdAt', 'updatedAt'].includes(key)) {
                   return (
                     <tr key={key}>
                       <td className="border-2 border-white p-4 font-semibold capitalize bg-gray-200 text-black">

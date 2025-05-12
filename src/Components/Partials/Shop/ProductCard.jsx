@@ -9,7 +9,7 @@ import { useNavigate } from "react-router-dom";
 const ProductCard = ({ product, isWishlist }) => {
 
   const navigate = useNavigate();
-  const { wishlist, setWishlist, handleAddToCart, handleAddToCompare, handleAddToWishlist } = useGlobalContext();
+  const { wishlist, setWishlist, handleAddToCart, handleAddToCompare, handleAddToWishlist, addNotification } = useGlobalContext();
   const { cart, setCart } = useGlobalContext();
   const { compareList, setCompareList } = useGlobalContext();
 
@@ -84,7 +84,10 @@ const ProductCard = ({ product, isWishlist }) => {
             <button 
             className="w-10 h-10 flex justify-center items-center border rounded-full p-2 mr-2 hover:bg-red-600 hover:text-white cursor-pointer relative group"
             title="Rimuovi dai preferiti"
-            onClick={() => setWishlist(wishlist.filter(item => item.id !== product.id))}
+            onClick={() => {
+              setWishlist(wishlist.filter(item => item.id !== product.id));
+              addNotification("Prodotto rimosso", `${product.name} è stato rimosso dalla lista`);
+            }}
           >
             <IoHeartDislikeOutline />
             <span className="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">Rimuovi dai Preferiti</span>

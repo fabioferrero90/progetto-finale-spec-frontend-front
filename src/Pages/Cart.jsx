@@ -2,11 +2,12 @@ import React from 'react'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 
 const Cart = () => {
-  const { cart, setCart } = useGlobalContext()
+  const { cart, setCart, addNotification } = useGlobalContext()
 
   const removeFromCart = (itemToRemove) => {
     const updatedCart = cart.filter(item => item !== itemToRemove);
     setCart(updatedCart);
+    addNotification("Rimosso dal carrello", `${itemToRemove.name} è stato rimosso dal carrello`)
   };
 
   if (cart.length > 0) {

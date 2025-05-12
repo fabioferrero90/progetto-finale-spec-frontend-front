@@ -2,7 +2,6 @@ import HeaderTopBar from "./Partials/Header/HeaderTopBar"
 import HeaderProdCategories from "./Partials/Header/HeaderProdCategories"
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { FaRegHeart, FaRegUser, FaSearch } from "react-icons/fa";
-import { HiMiniSquare3Stack3D } from "react-icons/hi2";
 import React, { useState, useRef, useEffect } from "react";
 import { useGlobalContext } from "../Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
@@ -10,19 +9,13 @@ import { useNavigate } from "react-router-dom";
 const Header = () => {
   const navigate = useNavigate();
   const [isSearchActive, setIsSearchActive] = useState(false);
-  const [searchQuery, setSearchQuery] = useState("");
-  const searchRef = useRef(null);
+  const searchQuery = useRef();
+  const searchRef = useRef();
   const { wishlist, cart } = useGlobalContext();
 
   const popularSearches = [
-    "scrivania",
-    "armadio"
-  ];
-
-  const popularCategories = [
-    "Letti con contenitore",
-    "Cassettiere e comò per la camera da letto",
-    "Materassi a molle"
+    "letto",
+    "divano"
   ];
 
   const handleSearchFocus = () => {
@@ -46,10 +39,6 @@ const Header = () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
   }, [isSearchActive]);
-
-  const handleSearchChange = (e) => {
-    setSearchQuery(e.target.value);
-  };
 
   return (
     <>
@@ -83,30 +72,34 @@ const Header = () => {
                       type="text" 
                       placeholder="Cosa stai cercando?"
                       autoFocus
-                      onChange={handleSearchChange}
-                      value={searchQuery}
+                      ref= {searchQuery}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          e.preventDefault();
+                          if (searchQuery.current.value.trim() !== "") {
+                            setIsSearchActive(false);
+                            navigate(`/results?query=${searchQuery.current.value}`);
+                          }
+                        }
+                      }}
                     />
                     <button type="submit" className="hidden"><i className="fa-solid fa-magnifying-glass"></i></button>
                   </form>
 
                   <div className="search-content">
 
-                    {/* Ricerche popolari */}
                     <div className="popular-searches p-2">
                       {popularSearches.map((search, index) => (
-                        <div key={index} className="search-item p-2 hover:bg-gray-100 flex items-center">
+                        <div 
+                          key={index} 
+                          className="search-item p-2 hover:bg-gray-100 flex items-center"
+                          onClick={() => {
+                            navigate(`/results?query=${search}`);
+                            setIsSearchActive(false);
+                          }}
+                          >
                           <FaSearch className="mr-2 text-gray-500" />
                           <span className="cursor-pointer">{search}</span>
-                        </div>
-                      ))}
-                    </div>
-
-                    {/* Categorie popolari */}
-                    <div className="popular-categories p-2">
-                      {popularCategories.map((category, index) => (
-                        <div key={index} className="category-item p-2 hover:bg-gray-100 flex items-center">
-                          <HiMiniSquare3Stack3D className="mr-2 text-gray-500"/>
-                          <span className="text-sm cursor-pointer">{category}</span>
                         </div>
                       ))}
                     </div>
@@ -127,17 +120,17 @@ const Header = () => {
             <a onClick={() => navigate("/wishlist")}>
               <FaRegHeart />
               {wishlist.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {wishlist.length}
                 </span>
               )}
             </a>
           </div>
-          <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl relative">
+          <div className="cart hover:bg-gray-100 p-2 border-0 rounded-2xl relative cursor-pointer">
             <a onClick={() => navigate("/cart")}>
               <RiShoppingBasketLine className="text-xl"/>
               {cart.length > 0 && (
-                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-4 w-4 flex items-center justify-center">
+                <span className="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
                   {cart.reduce((total, item) => total + item.quantity, 0)}
                 </span>
               )}
