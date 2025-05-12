@@ -32,6 +32,10 @@ const ProductCard = ({ product, isWishlist }) => {
   }
 
   const handleAddToCompare = () => {
+    if (compareList.length === 5) {
+      alert("Puoi confrontare al massimo 5 prodotti");
+      return;
+    }
     if (!compareList.includes(product)) {
       setCompareList([...compareList, product]);
     }
@@ -88,7 +92,7 @@ const ProductCard = ({ product, isWishlist }) => {
           <button 
             className="w-10 h-10 flex justify-center items-center border rounded-full p-2 mr-2 hover:bg-gray-500 hover:text-white cursor-pointer relative group"
             title="Confronta"
-            onClick={handleAddToWishlist}
+            onClick={handleAddToCompare}
           >
             <MdCompareArrows />
             <span className="invisible group-hover:visible absolute -top-8 left-1/2 -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 whitespace-nowrap">Confronta</span>

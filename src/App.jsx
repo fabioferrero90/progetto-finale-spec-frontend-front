@@ -6,6 +6,7 @@ import Category from "./Pages/Category";
 import Results from "./Pages/Results";
 import NotFound from "./Pages/NotFound";
 import Wishlist from "./Pages/Wishlist";
+import Compare from "./Pages/Compare";
 import Cart from "./Pages/Cart";
 
 const App = () => {
@@ -18,6 +19,7 @@ const App = () => {
             <Route path="/category/:category" element={<Category />} />
             <Route path="/results/:query" element={<Results />} />
             <Route path="/wishlist" element={<Wishlist />} />
+            <Route path="/compare" element={<Compare />} />
             <Route path="/cart" element={<Cart />} />
             <Route path="*" element={<NotFound />} />
           </Route>
