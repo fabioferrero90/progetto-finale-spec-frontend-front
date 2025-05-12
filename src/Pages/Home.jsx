@@ -1,7 +1,5 @@
-
-import { useState } from 'react';
-
 const Home = () => {
+
   const featuredItems = [
     {
       id: 1,
@@ -81,7 +79,7 @@ const Home = () => {
             
             {featuredItems[0].product && (
               <div className="absolute top-1/2 right-8 bg-white p-3 rounded-lg shadow-md max-w-[200px]">
-                <h3 className="font-bold">{featuredItems[0].product.name}</h3>
+                <h3 className="font-bold">{featuredItems[0].product.title}</h3>
                 <p className="text-sm text-gray-600">{featuredItems[0].product.description}</p>
                 <p className="text-xl font-bold mt-1">{featuredItems[0].product.price}</p>
               </div>

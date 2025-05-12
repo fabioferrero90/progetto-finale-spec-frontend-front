@@ -8,7 +8,7 @@ const Results = () => {
   const { search } = useLocation()
   const query = new URLSearchParams(search).get('query')
   const results = Products.filter((product) =>
-    product.name.toLowerCase().includes(query.toLowerCase()) || 
+    product.title.toLowerCase().includes(query.toLowerCase()) || 
     product.description.toLowerCase().includes(query.toLowerCase())
   )
 

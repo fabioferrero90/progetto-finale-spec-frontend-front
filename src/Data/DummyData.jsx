@@ -1,14 +1,14 @@
 const Categories = [
-  { name: "Tavoli e Sedie", img: "tables-chairs.avif", slug: "tables-chairs"},
-  { name: "Divani e Poltrone", img: "sofas-armchairs.avif", slug: "sofas-armchairs" },
-  { name: "Letti e Materassi", img: "beds-mattresses.avif", slug: "beds-mattresses" },
-  { name: "Mobili e Accessori da esterno", img: "outdoor-products.avif", slug: "outdoor-products" },
+  { name: "Tavoli e Sedie", img: "tables-chairs.avif", slug: "tables"},
+  { name: "Divani e Poltrone", img: "sofas-armchairs.avif", slug: "sofas" },
+  { name: "Letti e Materassi", img: "beds-mattresses.avif", slug: "beds" },
+  { name: "Mobili e Accessori da esterno", img: "outdoor-products.avif", slug: "outdoorproducts" },
 ]
 
 const Products = [
   {
     id: 1,
-    name: "MALM",
+    title: "MALM",
     reviews: 242,
     rating: 4,
     description: "Elegante letto in legno di betulla con pratico contenitore integrato, perfetto per ottimizzare lo spazio",
@@ -25,7 +25,7 @@ const Products = [
   },
   {
     id: 2,
-    name: "HEMNES",
+    title: "HEMNES",
     reviews: 152,
     rating: 3,
     description: "Letto classico in pino massiccio dal design senza tempo, robusto e durevole",
@@ -42,7 +42,7 @@ const Products = [
   },
   {
     id: 3,
-    name: "BRIMNES",
+    title: "BRIMNES",
     reviews: 192,
     rating: 5,
     description: "Letto moderno con ampio spazio contenitivo, ideale per camere da letto di grandi dimensioni",
@@ -59,7 +59,7 @@ const Products = [
   },
   {
     id: 4,
-    name: "SLATTUM",
+    title: "SLATTUM",
     reviews: 348,
     rating: 4,
     description: "Letto imbottito dal design minimalista con struttura in metallo, comfort ed eleganza a prezzo accessibile",
@@ -76,7 +76,7 @@ const Products = [
   },
   {
     id: 5,
-    name: "NEIDEN",
+    title: "NEIDEN",
     reviews: 3,
     rating: 2,
     description: "Letto essenziale in pino massiccio, soluzione economica e funzionale per ogni ambiente",
@@ -93,7 +93,7 @@ const Products = [
   },
   {
     id: 6,
-    name: "TARVA",
+    title: "TARVA",
     reviews: 142,
     rating: 4,
     description: "Letto in pino massiccio non trattato, personalizzabile con vernici o oli per legno",
@@ -110,7 +110,7 @@ const Products = [
   },
   {
     id: 7,
-    name: "KLEPPSTAD",
+    title: "KLEPPSTAD",
     reviews: 272,
     rating: 4,
     description: "Letto moderno in acciaio, leggero e resistente, ideale per spazi contenuti",
@@ -127,7 +127,7 @@ const Products = [
   },
   {
     id: 8,
-    name: "SONGESAND",
+    title: "SONGESAND",
     reviews: 192,
     rating: 5,
     description: "Letto con cassetti integrati, perfetto per chi cerca funzionalità e stile classico",
@@ -144,7 +144,7 @@ const Products = [
   },
   {
     id: 9,
-    name: "HAUGA",
+    title: "HAUGA",
     reviews: 872,
     rating: 3,
     description: "Letto imbottito in tessuto con contenitore, comfort e praticità in un unico prodotto",
@@ -161,7 +161,7 @@ const Products = [
   },
   {
     id: 10,
-    name: "IDANAS",
+    title: "IDANAS",
     reviews: 222,
     rating: 4,
     description: "Letto di lusso in legno massello con ampio contenitore, massima qualità e raffinatezza",
@@ -178,7 +178,7 @@ const Products = [
   },
   {
     id: 11,
-    name: "EKTORP",
+    title: "EKTORP",
     reviews: 192,
     rating: 4,
     description: "Divano classico a 3 posti con rivestimento lavabile, comfort tradizionale e praticità",
@@ -195,7 +195,7 @@ const Products = [
   },
   {
     id: 12,
-    name: "KIVIK",
+    title: "KIVIK",
     reviews: 112,
     rating: 4,
     description: "Ampio divano in pelle a 4 posti, design moderno e materiali premium",
@@ -212,7 +212,7 @@ const Products = [
   },
   {
     id: 13,
-    name: "LANDSKRONA",
+    title: "LANDSKRONA",
     reviews: 192,
     rating: 5,
     description: "Divano in pelle di alta qualità, design scandinavo elegante e raffinato",
@@ -229,7 +229,7 @@ const Products = [
   },
   {
     id: 14,
-    name: "VIMLE",
+    title: "VIMLE",
     reviews: 372,
     rating: 4,
     description: "Divano reclinabile compatto, perfetto per il relax con rivestimento lavabile",
@@ -246,7 +246,7 @@ const Products = [
   },
   {
     id: 15,
-    name: "SODERHAMN",
+    title: "SODERHAMN",
     reviews: 141,
     rating: 4,
     description: "Divano componibile moderno a 4 posti, versatile e confortevole",
@@ -263,7 +263,7 @@ const Products = [
   },
   {
     id: 16,
-    name: "GRONLID",
+    title: "GRONLID",
     reviews: 92,
     rating: 5,
     description: "Divano accogliente con rivestimento in tessuto verde, perfetto per ambienti familiari",
@@ -280,7 +280,7 @@ const Products = [
   },
   {
     id: 17,
-    name: "FARLOV",
+    title: "FARLOV",
     reviews: 72,
     rating: 4,
     description: "Divano elegante con rivestimento bianco lavabile, stile contemporaneo e comfort superiore",
@@ -297,7 +297,7 @@ const Products = [
   },
   {
     id: 18,
-    name: "STOCKSUND",
+    title: "STOCKSUND",
     reviews: 42,
     rating: 4,
     description: "Divano compatto dal design classico, ideale per spazi ridotti",
@@ -314,7 +314,7 @@ const Products = [
   },
   {
     id: 19,
-    name: "LIDHULT",
+    title: "LIDHULT",
     reviews: 212,
     rating: 4,
     description: "Divano in pelle di lusso reclinabile, massimo comfort per tutta la famiglia",
@@ -331,7 +331,7 @@ const Products = [
   },
   {
     id: 20,
-    name: "UPPLAND",
+    title: "UPPLAND",
     reviews: 2,
     rating: 1,
     description: "Divano pratico ed economico con rivestimento lavabile, ottimo rapporto qualità-prezzo",
@@ -348,7 +348,7 @@ const Products = [
   },
   {
     id: 21,
-    name: "EKEDALEN",
+    title: "EKEDALEN",
     reviews: 82,
     rating: 5,
     description: "Tavolo allungabile in quercia per 6 persone, versatile e robusto",
@@ -365,7 +365,7 @@ const Products = [
   },
   {
     id: 22,
-    name: "INGATORP",
+    title: "INGATORP",
     reviews: 212,
     rating: 4,
     description: "Tavolo rotondo allungabile in betulla, elegante e funzionale",
@@ -382,7 +382,7 @@ const Products = [
   },
   {
     id: 23,
-    name: "LANEBERG",
+    title: "LANEBERG",
     reviews: 72,
     rating: 4,
     description: "Tavolo moderno in acciaio allungabile, pratico e resistente",
@@ -399,7 +399,7 @@ const Products = [
   },
   {
     id: 24,
-    name: "NORDVIKEN",
+    title: "NORDVIKEN",
     reviews: 112,
     rating: 4,
     description: "Grande tavolo allungabile in pino, perfetto per cene in famiglia",
@@ -416,7 +416,7 @@ const Products = [
   },
   {
     id: 25,
-    name: "MELLTORP",
+    title: "MELLTORP",
     reviews: 242,
     rating: 5,
     description: "Tavolo compatto in acciaio, soluzione pratica per spazi ridotti",
@@ -433,7 +433,7 @@ const Products = [
   },
   {
     id: 26,
-    name: "LERHAMN",
+    title: "LERHAMN",
     reviews: 12,
     rating: 2,
     description: "Tavolo rustico in pino, design tradizionale e costruzione robusta",
@@ -450,7 +450,7 @@ const Products = [
   },
   {
     id: 27,
-    name: "INGO",
+    title: "INGO",
     reviews: 82,
     rating: 5,
     description: "Tavolo essenziale in pino, versatile e facile da abbinare",
@@ -467,7 +467,7 @@ const Products = [
   },
   {
     id: 28,
-    name: "GAMLEBY",
+    title: "GAMLEBY",
     reviews: 182,
     rating: 4,
     description: "Tavolo allungabile in stile country, charm rustico e funzionalità",
@@ -484,7 +484,7 @@ const Products = [
   },
   {
     id: 29,
-    name: "JOKKMOKK",
+    title: "JOKKMOKK",
     reviews: 92,
     rating: 5,
     description: "Set tavolo e sedie in pino, soluzione completa dal design classico",
@@ -501,7 +501,7 @@ const Products = [
   },
   {
     id: 30,
-    name: "SKOGSTA",
+    title: "SKOGSTA",
     reviews: 12,
     rating: 4,
     description: "Tavolo grande in acacia massiccia, perfetto per grandi riunioni familiari",

@@ -18,14 +18,14 @@ const Product = () => {
     <>
     <div className="container flex py-12">
         <div className="max-w-1/2">
-            <img className="container w-1/3" src={`/imgs/products/${product.image}`} alt={product.name} />
+            <img className="container w-1/3" src={`/imgs/products/${product.image}`} alt={product.title} />
         </div>
 
         <div className="p-5 border-0 rounded-2xl mx-auto">
             
             <p>{product.category}</p>
             
-            <h1 className="text-4xl font-semibold">{product.name}</h1>
+            <h1 className="text-4xl font-semibold">{product.title}</h1>
             <div className="flex items-center mb-4">
                 <div className="flex text-yellow-400">
                     {[...Array(5)].map((_, index) => (
@@ -96,7 +96,7 @@ const Product = () => {
             </div>
             <div>
                 <h3 className="font-bold text-sm mt-8">Servizi disponibili</h3>
-                <p className="text-sm">Hai bisogno di aiuto per montare {product.name}? <span className="underline cursor-pointer">Scopri di più</span></p>
+                <p className="text-sm">Hai bisogno di aiuto per montare {product.title}? <span className="underline cursor-pointer">Scopri di più</span></p>
             </div>
         </div>  
     </div>

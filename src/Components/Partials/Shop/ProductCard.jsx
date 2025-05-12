@@ -18,14 +18,14 @@ const ProductCard = ({ product, isWishlist }) => {
       <div className="product-image mb-4 bg-gray-100 rounded">
         <img 
           src={`/imgs/products/${product.image}`} 
-          alt={product.name} 
+          alt={product.title} 
           className="w-full h-64 object-cover cursor-pointer"
           onClick={() => navigate(`/product/${product.id}`)}
         />
       </div>
       
       <div className="product-info cursor-pointer ">
-        <h3 className="product-name font-bold uppercase text-sm" onClick={() => navigate(`/product/${product.id}`)}>{product.name}</h3>
+        <h3 className="product-name font-bold uppercase text-sm" onClick={() => navigate(`/product/${product.id}`)}>{product.title}</h3>
         <p className="product-description text-sm text-gray-600" onClick={() => navigate(`/product/${product.id}`)}>{product.description || "Materasso in schiuma, rigido/bianco, 90x200 cm"}</p>
         
         <div className="product-price mt-2">
@@ -86,7 +86,7 @@ const ProductCard = ({ product, isWishlist }) => {
             title="Rimuovi dai preferiti"
             onClick={() => {
               setWishlist(wishlist.filter(item => item.id !== product.id));
-              addNotification("Prodotto rimosso", `${product.name} è stato rimosso dalla lista`);
+              addNotification("Prodotto rimosso", `${product.title} è stato rimosso dalla lista`);
             }}
           >
             <IoHeartDislikeOutline />

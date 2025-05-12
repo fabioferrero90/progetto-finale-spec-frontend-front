@@ -35,7 +35,7 @@ const Compare = () => {
                   <td key={product.id} className="border-2 border-white p-4">
                     <img 
                       src={`/imgs/products/${product.image}`} 
-                      alt={product.name} 
+                      alt={product.title} 
                       className="w-32 h-32 object-contain mx-auto"
                     />
                   </td>
@@ -44,7 +44,7 @@ const Compare = () => {
               <tr>
                 <td className="border-2 border-white p-4 font-semibold bg-gray-200 text-black">Nome</td>
                 {compareList.slice(0, 5).map((product) => (
-                  <td key={product.id} className="border-2 border-white p-4">{product.name}</td>
+                  <td key={product.id} className="border-2 border-white p-4">{product.title}</td>
                 ))}
               </tr>
               <tr>

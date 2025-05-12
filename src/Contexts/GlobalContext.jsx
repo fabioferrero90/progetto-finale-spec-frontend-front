@@ -2,8 +2,48 @@ import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
 
 const GlobalContext = createContext();
+const apiUrl = import.meta.env.VITE_APP_API_URL
+
 
 const GlobalProvider = ({ children }) => {
+
+  const [products, setProducts] = useState([]);
+
+  const fetchProducts = async (category) => {
+    const response = await fetch(`${apiUrl}/${category}`);
+    const data = await response.json();
+    let promises = [];
+    data.map(prod => {
+      promises.push(fetch(`${apiUrl}/${category}/${prod.id}`))
+    })
+    const completeResponse = await Promise.all(promises)
+    let completeData = []
+    for (let prod in completeResponse){
+      completeData.push(
+        (await completeResponse[prod].json())[category.slice(0, category.length-2)]
+      )
+    }
+    setProducts(completeData);
+  };
+
+  const fetchAllProducts = async () => {
+    try {
+      const [sofaResponse, tableResponse, bedResponse] = await Promise.all([
+        fetch(`${apiUrl}/sofases`),
+        fetch(`${apiUrl}/tableses`), 
+        fetch(`${apiUrl}/bedses`)
+      ]);
+      const [sofaData, tableData, bedData] = await Promise.all([
+        sofaResponse.json(),
+        tableResponse.json(),
+        bedResponse.json()
+      ]);
+      setProducts([...sofaData, ...tableData, ...bedData]);
+    } catch (error) {
+      console.error('Errore nel fetch della lista prodotti:', error);
+    }
+  }
+
   const [wishlist, setWishlist] = useState(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     return savedWishlist ? JSON.parse(savedWishlist) : [];
@@ -41,9 +81,9 @@ const GlobalProvider = ({ children }) => {
   const handleAddToWishlist = (product) => {
     if (!wishlist.includes(product)) {
       setWishlist([...wishlist, product]);
-      addNotification('Aggiunto alla lista', `${product.name} è stato aggiunto alla wishlist!`);
+      addNotification('Aggiunto alla lista', `${product.title} è stato aggiunto alla wishlist!`);
     } else {
-      addNotification('Prodotto gia presente', `${product.name} è già presente nella wishlist!`);
+      addNotification('Prodotto gia presente', `${product.title} è già presente nella wishlist!`);
     }
   }
 
@@ -54,9 +94,9 @@ const GlobalProvider = ({ children }) => {
     }
     if (!compareList.includes(product)) {
       setCompareList([...compareList, product]);
-      addNotification('Aggiunto al confronto', `${product.name} è stato aggiunto al confronto`);
+      addNotification('Aggiunto al confronto', `${product.title} è stato aggiunto al confronto`);
     } else {
-      addNotification('Prodotto gia presente', `${product.name} è già presente nel confronto`);
+      addNotification('Prodotto gia presente', `${product.title} è già presente nel confronto`);
     }
 
   }
@@ -73,7 +113,7 @@ const GlobalProvider = ({ children }) => {
           : item
       ));
     }
-    addNotification('Aggiunto al carrello', `${product.name} è stato aggiunto al carrello`);
+    addNotification('Aggiunto al carrello', `${product.title} è stato aggiunto al carrello`);
   }
 
   useEffect(() => {
@@ -100,7 +140,11 @@ const GlobalProvider = ({ children }) => {
     handleAddToCart,
     notifications,
     addNotification,
-    removeNotification
+    removeNotification,
+    products,
+    setProducts,
+    fetchProducts,
+    fetchAllProducts
   };
 
   return (

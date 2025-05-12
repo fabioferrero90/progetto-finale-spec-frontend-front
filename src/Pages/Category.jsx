@@ -4,15 +4,21 @@ import { Categories, Products } from '../Data/DummyData'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 import FilterButton from '../Components/Partials/Shop/FilterButton';
 import { filterNames } from '../Data/FilterMapping';
+import { useGlobalContext } from '../Contexts/GlobalContext';
 
 const Category = () => {
   const {category} = useParams()
   const categoryData = Categories.find((cat) => cat.slug === category)
   const [filters, setFilters] = useState([])
   const [selectedFilters, setSelectedFilters] = useState([])
-  const [products, setProducts] = useState([])
   const [originalProducts, setOriginalProducts] = useState([])
   const [sortOrder, setSortOrder] = useState('default')
+
+  const {fetchProducts, products, setProducts} = useGlobalContext();
+
+  useEffect(() => {
+    fetchProducts(category + "es");
+  }, []);
 
   useEffect(() => {
     const categoryProducts = Products.filter((prod) => prod.category === categoryData.name)
@@ -52,7 +58,7 @@ const Category = () => {
           'reviews',
           'id',
           'image',
-          'name', 
+          'title', 
           'description',
           'updatedAt',
           'createdAt',
