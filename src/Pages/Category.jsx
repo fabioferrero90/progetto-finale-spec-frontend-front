@@ -48,6 +48,8 @@ const Category = () => {
       Object.entries(product).forEach(([key, value]) => {
         const excludedProperties = [
           'category',
+          'rating',
+          'reviews',
           'id',
           'image',
           'name', 

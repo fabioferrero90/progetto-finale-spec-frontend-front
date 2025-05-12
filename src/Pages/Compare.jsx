@@ -69,7 +69,7 @@ const Compare = () => {
                 if (!['id', 'image', 'name', 'category', 'description', 'price', 'createdAt', 'updatedAt'].includes(key)) {
                   return (
                     <tr key={key}>
-                      <td className="border-2 border-white p-4 font-semibold capitalize bg-gray-200 text-black border-white border-2">
+                      <td className="border-2 border-white p-4 font-semibold capitalize bg-gray-200 text-black">
                           {filterNames.find(f => f.name === key)?.label}
                       </td>
                       {compareList.slice(0, 5).map((product) => (

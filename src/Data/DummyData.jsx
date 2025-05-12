@@ -9,6 +9,8 @@ const Products = [
   {
     id: 1,
     name: "MALM",
+    reviews: 242,
+    rating: 4,
     description: "Elegante letto in legno di betulla con pratico contenitore integrato, perfetto per ottimizzare lo spazio",
     category: "Letti e Materassi",
     createdAt: "2024-01-15",
@@ -24,6 +26,8 @@ const Products = [
   {
     id: 2,
     name: "HEMNES",
+    reviews: 152,
+    rating: 3,
     description: "Letto classico in pino massiccio dal design senza tempo, robusto e durevole",
     category: "Letti e Materassi",
     createdAt: "2024-01-16",
@@ -39,6 +43,8 @@ const Products = [
   {
     id: 3,
     name: "BRIMNES",
+    reviews: 192,
+    rating: 5,
     description: "Letto moderno con ampio spazio contenitivo, ideale per camere da letto di grandi dimensioni",
     category: "Letti e Materassi",
     createdAt: "2024-01-17",
@@ -54,6 +60,8 @@ const Products = [
   {
     id: 4,
     name: "SLATTUM",
+    reviews: 348,
+    rating: 4,
     description: "Letto imbottito dal design minimalista con struttura in metallo, comfort ed eleganza a prezzo accessibile",
     category: "Letti e Materassi",
     createdAt: "2024-01-18",
@@ -69,6 +77,8 @@ const Products = [
   {
     id: 5,
     name: "NEIDEN",
+    reviews: 3,
+    rating: 2,
     description: "Letto essenziale in pino massiccio, soluzione economica e funzionale per ogni ambiente",
     category: "Letti e Materassi",
     createdAt: "2024-01-19",
@@ -84,6 +94,8 @@ const Products = [
   {
     id: 6,
     name: "TARVA",
+    reviews: 142,
+    rating: 4,
     description: "Letto in pino massiccio non trattato, personalizzabile con vernici o oli per legno",
     category: "Letti e Materassi",
     createdAt: "2024-01-20",
@@ -99,6 +111,8 @@ const Products = [
   {
     id: 7,
     name: "KLEPPSTAD",
+    reviews: 272,
+    rating: 4,
     description: "Letto moderno in acciaio, leggero e resistente, ideale per spazi contenuti",
     category: "Letti e Materassi",
     createdAt: "2024-01-21",
@@ -114,6 +128,8 @@ const Products = [
   {
     id: 8,
     name: "SONGESAND",
+    reviews: 192,
+    rating: 5,
     description: "Letto con cassetti integrati, perfetto per chi cerca funzionalità e stile classico",
     category: "Letti e Materassi",
     createdAt: "2024-01-22",
@@ -129,6 +145,8 @@ const Products = [
   {
     id: 9,
     name: "HAUGA",
+    reviews: 872,
+    rating: 3,
     description: "Letto imbottito in tessuto con contenitore, comfort e praticità in un unico prodotto",
     category: "Letti e Materassi",
     createdAt: "2024-01-23",
@@ -144,6 +162,8 @@ const Products = [
   {
     id: 10,
     name: "IDANAS",
+    reviews: 222,
+    rating: 4,
     description: "Letto di lusso in legno massello con ampio contenitore, massima qualità e raffinatezza",
     category: "Letti e Materassi",
     createdAt: "2024-01-24",
@@ -159,6 +179,8 @@ const Products = [
   {
     id: 11,
     name: "EKTORP",
+    reviews: 192,
+    rating: 4,
     description: "Divano classico a 3 posti con rivestimento lavabile, comfort tradizionale e praticità",
     category: "Divani e Poltrone",
     createdAt: "2024-01-25",
@@ -174,6 +196,8 @@ const Products = [
   {
     id: 12,
     name: "KIVIK",
+    reviews: 112,
+    rating: 4,
     description: "Ampio divano in pelle a 4 posti, design moderno e materiali premium",
     category: "Divani e Poltrone",
     createdAt: "2024-01-26",
@@ -189,6 +213,8 @@ const Products = [
   {
     id: 13,
     name: "LANDSKRONA",
+    reviews: 192,
+    rating: 5,
     description: "Divano in pelle di alta qualità, design scandinavo elegante e raffinato",
     category: "Divani e Poltrone",
     createdAt: "2024-01-27",
@@ -204,6 +230,8 @@ const Products = [
   {
     id: 14,
     name: "VIMLE",
+    reviews: 372,
+    rating: 4,
     description: "Divano reclinabile compatto, perfetto per il relax con rivestimento lavabile",
     category: "Divani e Poltrone",
     createdAt: "2024-01-28",
@@ -219,6 +247,8 @@ const Products = [
   {
     id: 15,
     name: "SODERHAMN",
+    reviews: 141,
+    rating: 4,
     description: "Divano componibile moderno a 4 posti, versatile e confortevole",
     category: "Divani e Poltrone",
     createdAt: "2024-01-29",
@@ -234,6 +264,8 @@ const Products = [
   {
     id: 16,
     name: "GRONLID",
+    reviews: 92,
+    rating: 5,
     description: "Divano accogliente con rivestimento in tessuto verde, perfetto per ambienti familiari",
     category: "Divani e Poltrone",
     createdAt: "2024-01-30",
@@ -249,6 +281,8 @@ const Products = [
   {
     id: 17,
     name: "FARLOV",
+    reviews: 72,
+    rating: 4,
     description: "Divano elegante con rivestimento bianco lavabile, stile contemporaneo e comfort superiore",
     category: "Divani e Poltrone",
     createdAt: "2024-01-31",
@@ -264,6 +298,8 @@ const Products = [
   {
     id: 18,
     name: "STOCKSUND",
+    reviews: 42,
+    rating: 4,
     description: "Divano compatto dal design classico, ideale per spazi ridotti",
     category: "Divani e Poltrone",
     createdAt: "2024-02-01",
@@ -279,6 +315,8 @@ const Products = [
   {
     id: 19,
     name: "LIDHULT",
+    reviews: 212,
+    rating: 4,
     description: "Divano in pelle di lusso reclinabile, massimo comfort per tutta la famiglia",
     category: "Divani e Poltrone",
     createdAt: "2024-02-02",
@@ -294,6 +332,8 @@ const Products = [
   {
     id: 20,
     name: "UPPLAND",
+    reviews: 2,
+    rating: 1,
     description: "Divano pratico ed economico con rivestimento lavabile, ottimo rapporto qualità-prezzo",
     category: "Divani e Poltrone",
     createdAt: "2024-02-03",
@@ -309,6 +349,8 @@ const Products = [
   {
     id: 21,
     name: "EKEDALEN",
+    reviews: 82,
+    rating: 5,
     description: "Tavolo allungabile in quercia per 6 persone, versatile e robusto",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-04",
@@ -324,6 +366,8 @@ const Products = [
   {
     id: 22,
     name: "INGATORP",
+    reviews: 212,
+    rating: 4,
     description: "Tavolo rotondo allungabile in betulla, elegante e funzionale",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-05",
@@ -339,6 +383,8 @@ const Products = [
   {
     id: 23,
     name: "LANEBERG",
+    reviews: 72,
+    rating: 4,
     description: "Tavolo moderno in acciaio allungabile, pratico e resistente",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-06",
@@ -354,6 +400,8 @@ const Products = [
   {
     id: 24,
     name: "NORDVIKEN",
+    reviews: 112,
+    rating: 4,
     description: "Grande tavolo allungabile in pino, perfetto per cene in famiglia",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-07",
@@ -369,6 +417,8 @@ const Products = [
   {
     id: 25,
     name: "MELLTORP",
+    reviews: 242,
+    rating: 5,
     description: "Tavolo compatto in acciaio, soluzione pratica per spazi ridotti",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-08",
@@ -384,6 +434,8 @@ const Products = [
   {
     id: 26,
     name: "LERHAMN",
+    reviews: 12,
+    rating: 2,
     description: "Tavolo rustico in pino, design tradizionale e costruzione robusta",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-09",
@@ -399,6 +451,8 @@ const Products = [
   {
     id: 27,
     name: "INGO",
+    reviews: 82,
+    rating: 5,
     description: "Tavolo essenziale in pino, versatile e facile da abbinare",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-10",
@@ -414,6 +468,8 @@ const Products = [
   {
     id: 28,
     name: "GAMLEBY",
+    reviews: 182,
+    rating: 4,
     description: "Tavolo allungabile in stile country, charm rustico e funzionalità",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-11",
@@ -429,6 +485,8 @@ const Products = [
   {
     id: 29,
     name: "JOKKMOKK",
+    reviews: 92,
+    rating: 5,
     description: "Set tavolo e sedie in pino, soluzione completa dal design classico",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-12",
@@ -444,6 +502,8 @@ const Products = [
   {
     id: 30,
     name: "SKOGSTA",
+    reviews: 12,
+    rating: 4,
     description: "Tavolo grande in acacia massiccia, perfetto per grandi riunioni familiari",
     category: "Tavoli e Sedie",
     createdAt: "2024-02-13",

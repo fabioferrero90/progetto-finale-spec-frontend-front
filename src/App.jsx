@@ -3,6 +3,7 @@ import { GlobalProvider } from "./Contexts/GlobalContext";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
 import Category from "./Pages/Category";
+import Product from "./Pages/Product";
 import Results from "./Pages/Results";
 import NotFound from "./Pages/NotFound";
 import Wishlist from "./Pages/Wishlist";
@@ -17,6 +18,7 @@ const App = () => {
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />
             <Route path="/category/:category" element={<Category />} />
+            <Route path="/product/:id" element={<Product />} />
             <Route path="/results/:query" element={<Results />} />
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/compare" element={<Compare />} />
