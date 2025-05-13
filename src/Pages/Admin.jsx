@@ -2,11 +2,19 @@ import React, { useEffect, useState } from 'react'
 import { Categories } from '../Data/Categories'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 import ProductList from '../Components/Partials/Admin/ProductList'
+import Modal from '../Components/Partials/Admin/Modal'
 
 const Admin = () => {
-    const { products, fetchAllProducts } = useGlobalContext();
+    const { products, fetchAllProducts, isUsingAPI } = useGlobalContext();
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    const dummyProd = {
+        title: 'Inserisci nome del prodotto',
+        description: 'Inserisci la descrizione',
+        price: 0,
+    }
 
     useEffect(() => {
         fetchAllProducts();
@@ -23,7 +31,7 @@ const Admin = () => {
     return (
         <div className="container">
             <div className="flex">
-                <div className="w-64 bg-gray-100 p-4">
+                <div className="w-64 bg-gray-100 p-4 flex flex-col">
                     <h2 className="text-lg font-semibold mb-4">Categorie</h2>
                     <ul className="space-y-2">
                         <li>
@@ -45,6 +53,12 @@ const Admin = () => {
                             </li>
                         ))}
                     </ul>
+                    {!isUsingAPI && <span className="text-xs text-red-600 text-center mt-auto pb-3">Devi attivare la API Mode per utilizzare questa funzione</span>}
+                    <button
+                        className={"bg-black text-white rounded-md py-2 cursor-pointer hover:bg-blue-600" + (isUsingAPI ? ' mt-auto' : '')}
+                        onClick={() => setIsModalOpen(true)}>
+                        Aggiungi Prodotto
+                    </button>
                 </div>
 
                 <div className="flex-1 p-8">
@@ -52,6 +66,7 @@ const Admin = () => {
                     <ProductList products={filteredProducts} />
                 </div>
             </div>
+            {isModalOpen && <Modal type="addproduct" product={dummyProd} closeModal={() => setIsModalOpen(false)} />}
         </div>
     )
 }
