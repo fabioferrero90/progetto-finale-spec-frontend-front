@@ -7,8 +7,8 @@ import { filterNames } from '../Data/FilterMapping';
 import { useGlobalContext } from '../Contexts/GlobalContext';
 
 const Category = () => {
-  const {category} = useParams()
-  const {fetchProducts, products, setProducts} = useGlobalContext();
+  const { category } = useParams()
+  const { fetchProducts, products, setProducts } = useGlobalContext();
   const categoryData = Categories.find((cat) => cat.slug === category)
   const [filters, setFilters] = useState([])
   const [selectedFilters, setSelectedFilters] = useState([])
@@ -16,7 +16,7 @@ const Category = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
 
   useEffect(() => {
-    if (category !== "outdoorproducts"){
+    if (category !== "outdoorproducts") {
       fetchProducts(category);
       setSelectedFilters([]);
     }
@@ -24,7 +24,7 @@ const Category = () => {
 
   useEffect(() => {
     if (products.length === 0) return;
-    
+
     const applyFilters = () => {
       if (selectedFilters.length === 0) {
         return [...products];
@@ -60,7 +60,7 @@ const Category = () => {
           'reviews',
           'id',
           'image',
-          'title', 
+          'title',
           'description',
           'updatedAt',
           'createdAt',
@@ -86,7 +86,7 @@ const Category = () => {
 
   const handleSort = (value) => {
     const sortedProducts = [...filteredProducts]
-    switch(value) {
+    switch (value) {
       case 'price_asc':
         sortedProducts.sort((a, b) => a.price - b.price)
         break
@@ -112,33 +112,33 @@ const Category = () => {
       </div>
       {products.length === 0 ? (
         <div className="no-products flex flex-col justify-center items-center">
-          <img className="max-w-[200px]" src="/imgs/notfound.jpg" alt=""/>
+          <img className="max-w-[200px]" src="/imgs/notfound.jpg" alt="" />
           <p className="font-semibold">Non ci sono prodotti in questa categoria.</p>
           <p>Prova a cercare altrove...un mondo di prodotti BKEA ti aspetta!</p>
         </div>
-      ):(
+      ) : (
         <>
           <div className="filters-bar flex flex-wrap items-center justify-start py-3">
-          <FilterButton 
-            name="order"
-            options={['price_asc', 'price_desc', 'name_asc', 'name_desc']} 
-            onChange={(name, value) => {
-              setSortOrder(value)
-              handleSort(value)
-            }}
-          />
-          {filters.map((filter, index) => (
-            <FilterButton key={index} name={filter.name} options={filter.options}
-            onChange={(name, value) => {
-              if (value === 'all') {
-                setSelectedFilters(selectedFilters.filter(f => f.name !== name))
-                return
-              }
-              const newFilters = selectedFilters.filter(f => f.name !== name)
-              newFilters.push({ name, value })
-              setSelectedFilters(newFilters)
-            }} />
-          ))}
+            <FilterButton
+              name="order"
+              options={['price_asc', 'price_desc', 'name_asc', 'name_desc']}
+              onChange={(name, value) => {
+                setSortOrder(value)
+                handleSort(value)
+              }}
+            />
+            {filters.map((filter, index) => (
+              <FilterButton key={index} name={filter.name} options={filter.options}
+                onChange={(name, value) => {
+                  if (value === 'all') {
+                    setSelectedFilters(selectedFilters.filter(f => f.name !== name))
+                    return
+                  }
+                  const newFilters = selectedFilters.filter(f => f.name !== name)
+                  newFilters.push({ name, value })
+                  setSelectedFilters(newFilters)
+                }} />
+            ))}
           </div>
           <div className="flex gap-3 mb-8">
             {selectedFilters.length > 0 && (

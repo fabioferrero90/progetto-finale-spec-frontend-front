@@ -1,12 +1,17 @@
 import React from 'react'
 import RecallBanner from './Partials/RecallBanner'
 import BottomFooter from './Partials/Footer/BottomFooter'
+import { useLocation } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+
   return (
     <>
-      <RecallBanner/>
-      <div className="bg-gray-50">
+      {!location.pathname.includes("/admin") && (
+        <>
+          <RecallBanner/>
+          <div className="bg-gray-50">
         <div className="container flex justify-between pt-12">
           <div className="CTA-section w-1/3 pr-10">
             <div className="py-5">
@@ -85,6 +90,8 @@ const Footer = () => {
           </div>
         </div>
       </div>
+        </>
+      )}
       <BottomFooter/>
     </>
   )

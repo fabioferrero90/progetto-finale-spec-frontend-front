@@ -9,6 +9,7 @@ import NotFound from "./Pages/NotFound";
 import Wishlist from "./Pages/Wishlist";
 import Compare from "./Pages/Compare";
 import Cart from "./Pages/Cart";
+import Admin from "./Pages/Admin";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
             <Route path="/wishlist" element={<Wishlist />} />
             <Route path="/compare" element={<Compare />} />
             <Route path="/cart" element={<Cart />} />
+            <Route path="/admin" element={<Admin />} />
             <Route path="*" element={<NotFound />} />
           </Route>
         </Routes>

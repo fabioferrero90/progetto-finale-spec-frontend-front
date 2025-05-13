@@ -1,0 +1,127 @@
+import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import Modal from './Modal'
+
+const ProductList = ({ products }) => {
+    const [currentPage, setCurrentPage] = useState(1);
+    const [searchTerm, setSearchTerm] = useState('');
+    const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+
+    const PRODUCTS_PER_PAGE = 3;
+
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setDebouncedSearchTerm(searchTerm);
+        }, 300);
+
+        return () => clearTimeout(timer);
+    }, [searchTerm]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [products]);
+
+    useEffect(() => {
+        setCurrentPage(1);
+    }, [debouncedSearchTerm]);
+
+    const filteredProducts = useMemo(() =>
+        products.filter(product =>
+            product.title.toLowerCase().includes(debouncedSearchTerm.toLowerCase())
+        ), [products, debouncedSearchTerm]
+    );
+
+    const { currentProducts, totalPages } = useMemo(() => {
+        const indexOfLastProduct = currentPage * PRODUCTS_PER_PAGE;
+        const indexOfFirstProduct = indexOfLastProduct - PRODUCTS_PER_PAGE;
+        return {
+            currentProducts: filteredProducts.slice(indexOfFirstProduct, indexOfLastProduct),
+            totalPages: Math.ceil(filteredProducts.length / PRODUCTS_PER_PAGE)
+        };
+    }, [filteredProducts, currentPage]);
+
+    const handlePageChange = useCallback((pageNumber) => {
+        setCurrentPage(pageNumber);
+    }, []);
+
+    const handleSearchChange = useCallback((e) => {
+        setSearchTerm(e.target.value);
+    }, []);
+
+    if (products.length === 0) {
+        return <p className="text-center mt-20">Nessun prodotto in questa categoria.</p>;
+    }
+
+    return (
+        <>
+            <div className="mb-6">
+                <input
+                    type="text"
+                    placeholder="Cerca prodotti..."
+                    value={searchTerm}
+                    onChange={handleSearchChange}
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
+                />
+            </div>
+
+            {filteredProducts.length === 0 ? (
+                <p className="text-center mt-20">Nessun prodotto trovato.</p>
+            ) : (
+                <>
+                    <div className="space-y-4">
+                        {currentProducts.map((product) => (
+                            <div key={product.id} className="flex bg-white p-4 rounded-lg shadow">
+                                <img
+                                    src={`/imgs/products/${product.image}`}
+                                    alt={product.title}
+                                    className="w-32 h-32 object-cover rounded"
+                                    loading="lazy"
+                                />
+                                <div className="ml-4 flex-1">
+                                    <div className="flex justify-between items-start">
+                                        <div>
+                                            <h3 className="text-xl font-semibold">{product.title}</h3>
+                                            <p className="text-gray-600">{product.category}</p>
+                                            <p className="text-lg font-medium mt-2">€{product.price}</p>
+                                        </div>
+                                        <div className="space-x-2">
+                                            <button
+                                                onClick={() => handleModalOpen('edit', product)}
+                                                className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition-colors"
+                                            >
+                                                Modifica
+                                            </button>
+                                            <button
+                                                onClick={() => handleModalOpen('delete', product)}
+                                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                                            >
+                                                Elimina
+                                            </button>
+                                        </div>
+                                    </div>
+                                    <p className="text-gray-700 mt-2">{product.description}</p>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="flex justify-center mt-8 space-x-2">
+                        {Array.from({ length: totalPages }, (_, index) => (
+                            <button
+                                key={index + 1}
+                                onClick={() => handlePageChange(index + 1)}
+                                className={`px-4 py-2 rounded transition-colors ${currentPage === index + 1
+                                    ? 'bg-black text-white'
+                                    : 'bg-gray-200 hover:bg-gray-300'
+                                    }`}
+                            >
+                                {index + 1}
+                            </button>
+                        ))}
+                    </div>
+                </>
+            )}
+        </>
+    );
+};
+
+export default React.memo(ProductList);
