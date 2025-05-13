@@ -16,34 +16,42 @@ const GlobalProvider = ({ children }) => {
     sofas: DBsofas.map(sofa => ({ ...sofa, parsed: true }))
   };
 
+  const [isUsingAPI, setIsUsingAPI] = useState(() => {
+    const savedAPIPreference = localStorage.getItem('isUsingAPI');
+    return savedAPIPreference ? JSON.parse(savedAPIPreference) : false;
+  });
+
+  useEffect(() => {
+    localStorage.setItem('isUsingAPI', JSON.stringify(isUsingAPI));
+  }, [isUsingAPI]);
+
   const [products, setProducts] = useState([]);
-  const [isFetching, setIsFetching] = useState(false);
 
   const fetchProducts = async (category) => {
-    setIsFetching(true);
-    try {
-      const response = await fetch(`${apiUrl}/${category}es`);
-      const data = await response.json();
+    if (isUsingAPI) {
+      try {
+        const response = await fetch(`${apiUrl}/${category}es`);
+        const data = await response.json();
 
-      const detailPromises = data.map(prod =>
-        fetch(`${apiUrl}/${category}es/${prod.id}`)
-          .then(res => res.json())
-          .then(json => json[category])
-      );
-      const completeData = await Promise.all(detailPromises);
-      setProducts(completeData);
-    } catch (error) {
-      console.error('Errore nel fetch dei prodotti:', error);
-
+        const detailPromises = data.map(prod =>
+          fetch(`${apiUrl}/${category}es/${prod.id}`)
+            .then(res => res.json())
+            .then(json => json[category])
+        );
+        const completeData = await Promise.all(detailPromises);
+        setProducts(completeData);
+      } catch (error) {
+        console.error('Errore nel fetch dei prodotti:', error);
+      }
+    } else {
       // Usa i dati del database locale
       console.log("Utilizzo i prodotti dal database locale");
       const DBData = category === 'sofas' ? parsedData.sofas :
         category === 'tables' ? parsedData.tables :
           parsedData.beds;
       setProducts(DBData);
-    } finally {
-      setIsFetching(false);
     }
+
   };
 
   const fetchAllProducts = async () => {
@@ -183,7 +191,8 @@ const GlobalProvider = ({ children }) => {
     setProducts,
     fetchProducts,
     fetchAllProducts,
-    isFetching
+    isUsingAPI,
+    setIsUsingAPI
   };
 
   return (
