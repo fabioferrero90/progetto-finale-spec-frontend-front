@@ -19,8 +19,12 @@ const FilterButton = ({ name, options, onChange }) => {
         >
           <option className="px-2" value="all">{label}</option>
           {options.map((item, index) => {
-            if (item === "price_asc" || item === "price_desc") {
-              let displayText = item === "price_asc" ? "Prezzo crescente" : "Prezzo decrescente";
+            if (item === "price_asc" || item === "price_desc" || item === "name_asc" || item === "name_desc") {
+              let displayText;
+              if (item === "price_asc") displayText = "Prezzo crescente";
+              else if (item === "price_desc") displayText = "Prezzo decrescente";
+              else if (item === "name_asc") displayText = "Nome A-Z";
+              else if (item === "name_desc") displayText = "Nome Z-A";
               return (
                 <option className="px-2" key={index} value={item}>
                   {displayText}

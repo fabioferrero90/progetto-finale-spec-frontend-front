@@ -93,6 +93,12 @@ const Category = () => {
       case 'price_desc':
         sortedProducts.sort((a, b) => b.price - a.price)
         break
+      case 'name_asc':
+        sortedProducts.sort((a, b) => a.title.localeCompare(b.title))
+        break
+      case 'name_desc':
+        sortedProducts.sort((a, b) => b.title.localeCompare(a.title))
+        break
       default:
         return
     }
@@ -115,15 +121,10 @@ const Category = () => {
           <div className="filters-bar flex flex-wrap items-center justify-start py-3">
           <FilterButton 
             name="order"
-            options={['price_asc', 'price_desc']} 
+            options={['price_asc', 'price_desc', 'name_asc', 'name_desc']} 
             onChange={(name, value) => {
               setSortOrder(value)
               handleSort(value)
-            }}
-            customLabels={{
-              default: 'Ordina per',
-              price_asc: 'Prezzo crescente',
-              price_desc: 'Prezzo decrescente'
             }}
           />
           {filters.map((filter, index) => (
