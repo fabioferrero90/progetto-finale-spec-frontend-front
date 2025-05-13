@@ -55,39 +55,41 @@ const GlobalProvider = ({ children }) => {
   };
 
   const fetchAllProducts = async () => {
-    setIsFetching(true);
-    try {
-      const [sofaResponse, tableResponse, bedResponse] = await Promise.all([
-        fetch(`${apiUrl}/sofases`),
-        fetch(`${apiUrl}/tableses`),
-        fetch(`${apiUrl}/bedses`)
-      ]);
-      const [sofaData, tableData, bedData] = await Promise.all([
-        sofaResponse.json(),
-        tableResponse.json(),
-        bedResponse.json()
-      ]);
-      const productList = [...sofaData, ...tableData, ...bedData];
+    if (isUsingAPI) {
 
-      const detailPromises = productList.map(prod => {
-        const category = prod.category.toLowerCase().includes('divani') ? 'sofas' :
-          prod.category.toLowerCase().includes('tavoli') ? 'tables' :
-            'beds';
-        return fetch(`${apiUrl}/${category}es/${prod.id}`)
-          .then(res => res.json())
-          .then(json => json[category]);
-      });
+      try {
+        const [sofaResponse, tableResponse, bedResponse] = await Promise.all([
+          fetch(`${apiUrl}/sofases`),
+          fetch(`${apiUrl}/tableses`),
+          fetch(`${apiUrl}/bedses`)
+        ]);
+        const [sofaData, tableData, bedData] = await Promise.all([
+          sofaResponse.json(),
+          tableResponse.json(),
+          bedResponse.json()
+        ]);
+        const productList = [...sofaData, ...tableData, ...bedData];
 
-      const completeData = await Promise.all(detailPromises);
-      setProducts(completeData);
-    } catch (error) {
-      console.error('Errore nel fetch della lista prodotti:', error);
+        const detailPromises = productList.map(prod => {
+          const category = prod.category.toLowerCase().includes('divani') ? 'sofas' :
+            prod.category.toLowerCase().includes('tavoli') ? 'tables' :
+              'beds';
+          return fetch(`${apiUrl}/${category}es/${prod.id}`)
+            .then(res => res.json())
+            .then(json => json[category]);
+        });
+
+        const completeData = await Promise.all(detailPromises);
+        setProducts(completeData);
+      } catch (error) {
+        console.error('Errore nel fetch della lista prodotti:', error);
+
+      }
+    } else {
       // Usa i dati pre-parsati dal database locale
       console.log("Utilizzo i prodotti dal database locale");
       const DBData = [...parsedData.sofas, ...parsedData.tables, ...parsedData.beds];
       setProducts(DBData);
-    } finally {
-      setIsFetching(false);
     }
   }
 

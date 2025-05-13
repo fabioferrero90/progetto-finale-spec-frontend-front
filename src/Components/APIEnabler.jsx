@@ -26,7 +26,7 @@ const APIEnabler = () => {
                 </div>
                 <button
                     onClick={() => setIsOpen(!isOpen)}
-                    className="bg-gray-600 text-white p-2 shadow-md rounded-r-xl absolute -right-10 shadow-gray-400"
+                    className="bg-gray-600/50 text-white p-2 shadow-md rounded-r-xl absolute -right-10 shadow-gray-400 cursor-pointer"
                 >
                     <svg
                         className={`w-6 h-25 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`}

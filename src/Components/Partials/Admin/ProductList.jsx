@@ -1,10 +1,15 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
+import { useGlobalContext } from '../../../Contexts/GlobalContext'
+import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+
 import Modal from './Modal'
 
 const ProductList = ({ products }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
+
+    const { isUsingAPI } = useGlobalContext()
 
     const PRODUCTS_PER_PAGE = 3;
 
@@ -83,20 +88,24 @@ const ProductList = ({ products }) => {
                                             <p className="text-gray-600">{product.category}</p>
                                             <p className="text-lg font-medium mt-2">€{product.price}</p>
                                         </div>
-                                        <div className="space-x-2">
-                                            <button
-                                                onClick={() => handleModalOpen('edit', product)}
-                                                className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition-colors"
-                                            >
-                                                Modifica
-                                            </button>
-                                            <button
-                                                onClick={() => handleModalOpen('delete', product)}
-                                                className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
-                                            >
-                                                Elimina
-                                            </button>
+                                        <div className="flex flex-col gap-3 content-end">
+                                            {!isUsingAPI && (<span className="text-xs text-red-500">Devi attivare la API Mode per utilizzare queste funzioni</span>)}
+                                            <div className="flex justify-end gap-3 w-full">
+                                                <button
+                                                    onClick={() => handleModalOpen('edit', product)}
+                                                    className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition-colors"
+                                                >
+                                                    <FaEdit />
+                                                </button>
+                                                <button
+                                                    onClick={() => handleModalOpen('delete', product)}
+                                                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                                                >
+                                                    <FaRegTrashAlt />
+                                                </button>
+                                            </div>
                                         </div>
+
                                     </div>
                                     <p className="text-gray-700 mt-2">{product.description}</p>
                                 </div>
