@@ -5,14 +5,4 @@ const Categories = [
   { name: "Mobili e Accessori da esterno", img: "outdoor-products.avif", slug: "outdoorproducts" },
 ]
 
-const HeaderProdMenu = [
-  "Esplora gli ambienti",
-  "Offerte",
-  "Ispirazione",
-  "BKEA for Business",
-  "Servizi e Progettazione",
-  "Altro"
-]
-
-
-export {Categories, HeaderProdMenu};
+export {Categories};

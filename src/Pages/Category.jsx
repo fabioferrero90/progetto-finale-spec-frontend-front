@@ -1,6 +1,6 @@
-import React, { useState, useEffect, useMemo } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Categories } from '../Data/DummyData'
+import { Categories } from '../Data/Categories'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 import FilterButton from '../Components/Partials/Shop/FilterButton';
 import { filterNames } from '../Data/FilterMapping';
@@ -8,37 +8,29 @@ import { useGlobalContext } from '../Contexts/GlobalContext';
 
 const Category = () => {
   const {category} = useParams()
+  const {fetchProducts, products, setProducts} = useGlobalContext();
   const categoryData = Categories.find((cat) => cat.slug === category)
   const [filters, setFilters] = useState([])
   const [selectedFilters, setSelectedFilters] = useState([])
-  const [originalProducts, setOriginalProducts] = useState([])
-  const [sortOrder, setSortOrder] = useState('default')
-
-  const {fetchProducts, products, setProducts} = useGlobalContext();
+  const [sortOrder, setSortOrder] = useState('price_asc')
+  const [filteredProducts, setFilteredProducts] = useState([])
 
   useEffect(() => {
     if (category !== "outdoorproducts"){
       fetchProducts(category);
+      setSelectedFilters([]);
     }
   }, [category]);
 
   useEffect(() => {
-    const categoryProducts = products.filter((prod) => prod.category === categoryData.name)
-    setProducts(categoryProducts)
-    setOriginalProducts(categoryProducts)
-  }, [category])
-
-  useEffect(() => {
-    if (selectedFilters.length === 0) {
-      setProducts(originalProducts)
-      return
-    }
-
-    const filteredProducts = useMemo(() => {
+    if (products.length === 0) return;
+    
+    const applyFilters = () => {
       if (selectedFilters.length === 0) {
-        return originalProducts;
+        return [...products];
       }
-      return originalProducts.filter((product) => {
+
+      return products.filter((product) => {
         return selectedFilters.every((filter) => {
           const productValue = product[filter.name];
           if (filter.value === 'all') return true;
@@ -51,11 +43,14 @@ const Category = () => {
           return productValue === filter.value;
         });
       });
-    }, [selectedFilters, originalProducts]);
-    setProducts(filteredProducts)
-  }, [selectedFilters, originalProducts])
+    };
+
+    const filteredProducts = applyFilters();
+    setFilteredProducts(filteredProducts);
+  }, [selectedFilters]);
 
   useEffect(() => {
+    setFilteredProducts(products);
     const productFilters = [];
     products.forEach(product => {
       Object.entries(product).forEach(([key, value]) => {
@@ -90,7 +85,7 @@ const Category = () => {
   }, [products]);
 
   const handleSort = (value) => {
-    const sortedProducts = [...products]
+    const sortedProducts = [...filteredProducts]
     switch(value) {
       case 'price_asc':
         sortedProducts.sort((a, b) => a.price - b.price)
@@ -101,7 +96,7 @@ const Category = () => {
       default:
         return
     }
-    setProducts(sortedProducts)
+    setFilteredProducts(sortedProducts)
   }
 
   return (
@@ -119,7 +114,7 @@ const Category = () => {
         <>
           <div className="filters-bar flex flex-wrap items-center justify-start py-3">
           <FilterButton 
-            name="order" 
+            name="order"
             options={['price_asc', 'price_desc']} 
             onChange={(name, value) => {
               setSortOrder(value)
@@ -139,9 +134,7 @@ const Category = () => {
                 return
               }
               const newFilters = selectedFilters.filter(f => f.name !== name)
-              // Conversione del valore in base al tipo
-              let processedValue = value
-              newFilters.push({ name, value: processedValue })
+              newFilters.push({ name, value })
               setSelectedFilters(newFilters)
             }} />
           ))}
@@ -163,10 +156,9 @@ const Category = () => {
               ))
             )}
           </div>
-          <ProductGrid products={products} />
-          </>
+          <ProductGrid products={filteredProducts} />
+        </>
       )}
-      
     </div>
   )
 }

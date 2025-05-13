@@ -1,6 +1,15 @@
 import React from 'react';
-import {Categories, HeaderProdMenu} from '../../../Data/DummyData';
+import {Categories} from '../../../Data/Categories';
 import { useNavigate } from 'react-router-dom';
+
+const HeaderProdMenu = [
+  "Esplora gli ambienti",
+  "Offerte",
+  "Ispirazione",
+  "BKEA for Business",
+  "Servizi e Progettazione",
+  "Altro"
+]
 
 const HeaderProdCategories = () => {
   const navigate = useNavigate();
