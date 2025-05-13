@@ -11,7 +11,7 @@ const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const searchQuery = useRef();
   const searchRef = useRef();
-  const { wishlist, cart, fetchAllProducts } = useGlobalContext();
+  const { wishlist, cart } = useGlobalContext();
 
   const popularSearches = [
     "letto",

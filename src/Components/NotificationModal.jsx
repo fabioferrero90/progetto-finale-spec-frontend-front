@@ -1,8 +1,8 @@
-import React, { useEffect } from 'react'
+import React from 'react'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 
 const NotificationModal = () => {
-    const { notifications, removeNotification } = useGlobalContext();
+    const { notifications } = useGlobalContext();
 
     return (
         <div className="fixed bottom-5 left-5 flex flex-col gap-4">
@@ -15,7 +15,7 @@ const NotificationModal = () => {
                         <img className="w-[50px]" src="/imgs/notification.gif" alt="notify" />
                     </div>
                     <div className="w-3/4">
-                        <p className="font-semibold">{notification.title}</p>
+                        <p className="font-semibold text-nowrap">{notification.title}</p>
                         <p>{notification.message}</p>
                     </div>
                 </div>

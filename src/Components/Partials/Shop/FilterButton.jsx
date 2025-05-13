@@ -6,7 +6,7 @@ const FilterButton = ({ name, options, onChange }) => {
 
   const handleChange = (e) => {
     onChange(name, e.target.value);
-    e.target.value = 'all'; // Resetta il valore del select dopo la selezione
+    e.target.value = 'all';
   };
 
   return (

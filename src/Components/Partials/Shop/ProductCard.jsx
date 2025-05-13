@@ -10,8 +10,6 @@ const ProductCard = ({ product, isWishlist }) => {
 
   const navigate = useNavigate();
   const { wishlist, setWishlist, handleAddToCart, handleAddToCompare, handleAddToWishlist, addNotification } = useGlobalContext();
-  const { cart, setCart } = useGlobalContext();
-  const { compareList, setCompareList } = useGlobalContext();
 
   return (
     <div className="product-card flex flex-col hover:scale-105 transition-transform duration-300">

@@ -1,5 +1,6 @@
 import { createContext, useContext, useEffect } from "react";
 import { useState } from "react";
+import { useCallback } from "react";
 
 const GlobalContext = createContext();
 const apiUrl = import.meta.env.VITE_APP_API_URL
@@ -89,16 +90,16 @@ const GlobalProvider = ({ children }) => {
   };
 
 
-  const handleAddToWishlist = (product) => {
+  const handleAddToWishlist = useCallback((product) => {
     if (!wishlist.includes(product)) {
       setWishlist([...wishlist, product]);
       addNotification('Aggiunto alla lista', `${product.title} è stato aggiunto alla wishlist!`);
     } else {
       addNotification('Prodotto gia presente', `${product.title} è già presente nella wishlist!`);
     }
-  }
+  }, [wishlist, addNotification]);
 
-  const handleAddToCompare = (product) => {
+  const handleAddToCompare = useCallback((product) => {
     if (compareList.length === 5) {
       addNotification('Limite Raggiunto', `Puoi confrontare al massimo 5 prodotti`);
       return;
@@ -109,10 +110,9 @@ const GlobalProvider = ({ children }) => {
     } else {
       addNotification('Prodotto gia presente', `${product.title} è già presente nel confronto`);
     }
+  }, [compareList, addNotification]);
 
-  }
-
-  const handleAddToCart = (product) => {
+  const handleAddToCart = useCallback((product) => {
     const existingProduct = cart.find(item => item.id === product.id);
     
     if (!existingProduct) {
@@ -125,7 +125,7 @@ const GlobalProvider = ({ children }) => {
       ));
     }
     addNotification('Aggiunto al carrello', `${product.title} è stato aggiunto al carrello`);
-  }
+  }, [cart, addNotification]);
 
   useEffect(() => {
     localStorage.setItem('wishlist', JSON.stringify(wishlist));

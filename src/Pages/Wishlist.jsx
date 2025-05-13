@@ -3,7 +3,7 @@ import ProductGrid from '../Components/Partials/Shop/ProductGrid'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 
 const Wishlist = () => {
-  const { wishlist, setWishlist} = useGlobalContext()
+  const { wishlist} = useGlobalContext()
 
   return (
     <div className="container py-12">

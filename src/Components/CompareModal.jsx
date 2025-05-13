@@ -7,7 +7,6 @@ const CompareModal = () => {
     const navigate = useNavigate()
     const location = useLocation()
 
-    // Verifica se siamo in una pagina che contiene ProductGrid
     const pagesWithProductGrid = ['/category', '/wishlist', '/product', '/results']
     const shouldShowModal = pagesWithProductGrid.some(path => location.pathname.includes(path))
 

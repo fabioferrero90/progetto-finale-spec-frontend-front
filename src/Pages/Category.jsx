@@ -34,19 +34,24 @@ const Category = () => {
       return
     }
 
-    const filteredProducts = originalProducts.filter((product) => {
-      return selectedFilters.every((filter) => {
-        const productValue = product[filter.name]
-        if (filter.value === 'all') return true
-        if (Array.isArray(productValue)) {
-          return productValue.includes(filter.value)
-        }
-        if (typeof productValue === 'number') {
-          return productValue >= Number(filter.value)
-        }
-        return productValue === filter.value
-      })
-    })
+    const filteredProducts = useMemo(() => {
+      if (selectedFilters.length === 0) {
+        return originalProducts;
+      }
+      return originalProducts.filter((product) => {
+        return selectedFilters.every((filter) => {
+          const productValue = product[filter.name];
+          if (filter.value === 'all') return true;
+          if (Array.isArray(productValue)) {
+            return productValue.includes(filter.value);
+          }
+          if (typeof productValue === 'number') {
+            return productValue >= Number(filter.value);
+          }
+          return productValue === filter.value;
+        });
+      });
+    }, [selectedFilters, originalProducts]);
     setProducts(filteredProducts)
   }, [selectedFilters, originalProducts])
 
