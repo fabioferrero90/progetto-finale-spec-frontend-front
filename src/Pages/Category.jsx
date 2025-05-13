@@ -16,6 +16,7 @@ const Category = () => {
   const [filteredProducts, setFilteredProducts] = useState([])
 
   useEffect(() => {
+    setProducts([]);
     if (category !== "outdoorproducts") {
       fetchProducts(category);
       setSelectedFilters([]);
