@@ -6,15 +6,15 @@ import DBbeds from '../../server-files/database/beds.json'
 import DBtables from '../../server-files/database/tables.json'
 import DBsofas from '../../server-files/database/sofas.json'
 
-// Pre-parsare i dati JSON (per l'utilizzo senza Backend)
-const parsedDBbeds = DBbeds.map(bed => ({ ...bed, parsed: true }));
-const parsedDBtables = DBtables.map(table => ({ ...table, parsed: true }));
-const parsedDBsofas = DBsofas.map(sofa => ({ ...sofa, parsed: true }));
-
 const GlobalContext = createContext();
 const apiUrl = import.meta.env.VITE_APP_API_URL
 
 const GlobalProvider = ({ children }) => {
+  const parsedData = {
+    beds: DBbeds.map(bed => ({ ...bed, parsed: true })),
+    tables: DBtables.map(table => ({ ...table, parsed: true })),
+    sofas: DBsofas.map(sofa => ({ ...sofa, parsed: true }))
+  };
 
   const [products, setProducts] = useState([]);
 
@@ -33,11 +33,11 @@ const GlobalProvider = ({ children }) => {
     } catch (error) {
       console.error('Errore nel fetch dei prodotti:', error);
 
-      // Usa i dati pre-parsati invece di accedere direttamente al JSON
-      console.log("Utilizzo i prodotti pre-parsati dal database locale");
-      const DBData = category === 'sofas' ? parsedDBsofas :
-        category === 'tables' ? parsedDBtables :
-          parsedDBbeds;
+      // Usa i dati del database locale
+      console.log("Utilizzo i prodotti dal database locale");
+      const DBData = category === 'sofas' ? parsedData.sofas :
+        category === 'tables' ? parsedData.tables :
+          parsedData.beds;
       setProducts(DBData);
     }
   };
@@ -69,9 +69,9 @@ const GlobalProvider = ({ children }) => {
       setProducts(completeData);
     } catch (error) {
       console.error('Errore nel fetch della lista prodotti:', error);
-      // Usa i dati pre-parsati
-      console.log("Utilizzo i prodotti pre-parsati dal database locale");
-      const DBData = [...parsedDBsofas, ...parsedDBtables, ...parsedDBbeds];
+      // Usa i dati pre-parsati dal database locale
+      console.log("Utilizzo i prodotti dal database locale");
+      const DBData = [...parsedData.sofas, ...parsedData.tables, ...parsedData.beds];
       setProducts(DBData);
     }
   }
