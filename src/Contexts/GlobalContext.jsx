@@ -4,26 +4,25 @@ import { useState } from "react";
 const GlobalContext = createContext();
 const apiUrl = import.meta.env.VITE_APP_API_URL
 
-
 const GlobalProvider = ({ children }) => {
 
   const [products, setProducts] = useState([]);
 
   const fetchProducts = async (category) => {
-    const response = await fetch(`${apiUrl}/${category}`);
-    const data = await response.json();
-    let promises = [];
-    data.map(prod => {
-      promises.push(fetch(`${apiUrl}/${category}/${prod.id}`))
-    })
-    const completeResponse = await Promise.all(promises)
-    let completeData = []
-    for (let prod in completeResponse){
-      completeData.push(
-        (await completeResponse[prod].json())[category.slice(0, category.length-2)]
-      )
+    try {
+      const response = await fetch(`${apiUrl}/${category}es`);
+      const data = await response.json();
+
+      const detailPromises = data.map(prod => 
+        fetch(`${apiUrl}/${category}es/${prod.id}`)
+          .then(res => res.json())
+          .then(json => json[category])
+      );
+      const completeData = await Promise.all(detailPromises);
+      setProducts(completeData);
+    } catch (error) {
+      console.error('Errore nel fetch dei prodotti:', error);
     }
-    setProducts(completeData);
   };
 
   const fetchAllProducts = async () => {
@@ -38,7 +37,19 @@ const GlobalProvider = ({ children }) => {
         tableResponse.json(),
         bedResponse.json()
       ]);
-      setProducts([...sofaData, ...tableData, ...bedData]);
+      const productList = [...sofaData, ...tableData, ...bedData];
+      
+      const detailPromises = productList.map(prod => {
+        const category = prod.category.toLowerCase().includes('divani') ? 'sofas' :
+                        prod.category.toLowerCase().includes('tavoli') ? 'tables' :
+                        'beds';
+        return fetch(`${apiUrl}/${category}es/${prod.id}`)
+          .then(res => res.json())
+          .then(json => json[category]);
+      });
+
+      const completeData = await Promise.all(detailPromises);
+      setProducts(completeData);
     } catch (error) {
       console.error('Errore nel fetch della lista prodotti:', error);
     }

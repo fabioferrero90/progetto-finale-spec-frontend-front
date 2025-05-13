@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react'
 import { useParams } from 'react-router-dom';
-import { Categories, Products } from '../Data/DummyData'
+import { Categories } from '../Data/DummyData'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 import FilterButton from '../Components/Partials/Shop/FilterButton';
 import { filterNames } from '../Data/FilterMapping';
@@ -17,11 +17,13 @@ const Category = () => {
   const {fetchProducts, products, setProducts} = useGlobalContext();
 
   useEffect(() => {
-    fetchProducts(category + "es");
-  }, []);
+    if (category !== "outdoorproducts"){
+      fetchProducts(category);
+    }
+  }, [category]);
 
   useEffect(() => {
-    const categoryProducts = Products.filter((prod) => prod.category === categoryData.name)
+    const categoryProducts = products.filter((prod) => prod.category === categoryData.name)
     setProducts(categoryProducts)
     setOriginalProducts(categoryProducts)
   }, [category])

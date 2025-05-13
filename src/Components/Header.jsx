@@ -11,7 +11,7 @@ const Header = () => {
   const [isSearchActive, setIsSearchActive] = useState(false);
   const searchQuery = useRef();
   const searchRef = useRef();
-  const { wishlist, cart } = useGlobalContext();
+  const { wishlist, cart, fetchAllProducts } = useGlobalContext();
 
   const popularSearches = [
     "letto",
@@ -94,6 +94,7 @@ const Header = () => {
                           key={index} 
                           className="search-item p-2 hover:bg-gray-100 flex items-center"
                           onClick={() => {
+
                             navigate(`/results?query=${search}`);
                             setIsSearchActive(false);
                           }}

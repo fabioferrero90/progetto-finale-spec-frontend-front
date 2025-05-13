@@ -7,7 +7,7 @@ const Cart = () => {
   const removeFromCart = (itemToRemove) => {
     const updatedCart = cart.filter(item => item !== itemToRemove);
     setCart(updatedCart);
-    addNotification("Rimosso dal carrello", `${itemToRemove.name} è stato rimosso dal carrello`)
+    addNotification("Rimosso dal carrello", `${itemToRemove.title} è stato rimosso dal carrello`)
   };
 
   if (cart.length > 0) {

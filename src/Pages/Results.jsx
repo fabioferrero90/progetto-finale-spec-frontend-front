@@ -1,16 +1,20 @@
 import { useLocation } from 'react-router-dom'
-import { Products } from '../Data/DummyData'
+import { useGlobalContext } from '../Contexts/GlobalContext'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid'
-import React from'react'
-import Product from './Product'
+import React, { useEffect } from'react'
 
 const Results = () => {
   const { search } = useLocation()
+  const { products, fetchAllProducts } = useGlobalContext()
   const query = new URLSearchParams(search).get('query')
-  const results = Products.filter((product) =>
+  const results = products.filter((product) =>
     product.title.toLowerCase().includes(query.toLowerCase()) || 
     product.description.toLowerCase().includes(query.toLowerCase())
   )
+
+  useEffect(() => {
+    fetchAllProducts()
+  }, [])
 
   return (
     <div className="container py-12">

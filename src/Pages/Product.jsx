@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGlobalContext } from '../Contexts/GlobalContext'
-import { Categories, Products } from '../Data/DummyData'
+import { Categories } from '../Data/DummyData'
 import { filterNames } from '../Data/FilterMapping';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaRegHeart } from 'react-icons/fa';
@@ -9,10 +9,10 @@ import { MdCompareArrows } from 'react-icons/md';
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 
 const Product = () => {
-  const { setWishlist, setCart, setCompareList, handleAddToCart, handleAddToCompare, handleAddToWishlist } = useGlobalContext();
+  const { setWishlist, setCart, setCompareList, handleAddToCart, handleAddToCompare, handleAddToWishlist, products } = useGlobalContext();
   const { id } = useParams();
-  const product = Products.find((prod) => prod.id === parseInt(id));
-  const relatedProducts = Products.filter((prod) => prod.category === product.category && prod.id !== product.id);
+  const product = products.find((prod) => prod.id === parseInt(id));
+  const relatedProducts = products.filter((prod) => prod.category === product.category && prod.id !== product.id);
 
   return (
     <>
