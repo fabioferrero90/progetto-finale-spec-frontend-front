@@ -1,15 +1,16 @@
 import { useLocation } from 'react-router-dom'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid'
-import React, { useEffect, useMemo } from'react'
+import React, { useEffect, useMemo } from 'react'
+import Loading from '../Components/Partials/Loading'
 
 const Results = () => {
   const { search } = useLocation()
-  const { products, fetchAllProducts } = useGlobalContext()
+  const { products, fetchAllProducts, isFetching } = useGlobalContext()
   const query = new URLSearchParams(search).get('query')
   const filteredResults = useMemo(() => {
     return products.filter((product) =>
-      product.title.toLowerCase().includes(query.toLowerCase()) || 
+      product.title.toLowerCase().includes(query.toLowerCase()) ||
       product.description.toLowerCase().includes(query.toLowerCase())
     );
   }, [products, query]);
@@ -17,6 +18,10 @@ const Results = () => {
   useEffect(() => {
     fetchAllProducts()
   }, [])
+
+  if (isFetching) {
+    <Loading />
+  }
 
   return (
     <div className="container py-12">

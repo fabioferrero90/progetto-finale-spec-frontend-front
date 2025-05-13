@@ -17,8 +17,10 @@ const GlobalProvider = ({ children }) => {
   };
 
   const [products, setProducts] = useState([]);
+  const [isFetching, setIsFetching] = useState(false);
 
   const fetchProducts = async (category) => {
+    setIsFetching(true);
     try {
       const response = await fetch(`${apiUrl}/${category}es`);
       const data = await response.json();
@@ -39,10 +41,13 @@ const GlobalProvider = ({ children }) => {
         category === 'tables' ? parsedData.tables :
           parsedData.beds;
       setProducts(DBData);
+    } finally {
+      setIsFetching(false);
     }
   };
 
   const fetchAllProducts = async () => {
+    setIsFetching(true);
     try {
       const [sofaResponse, tableResponse, bedResponse] = await Promise.all([
         fetch(`${apiUrl}/sofases`),
@@ -73,6 +78,8 @@ const GlobalProvider = ({ children }) => {
       console.log("Utilizzo i prodotti dal database locale");
       const DBData = [...parsedData.sofas, ...parsedData.tables, ...parsedData.beds];
       setProducts(DBData);
+    } finally {
+      setIsFetching(false);
     }
   }
 
@@ -175,7 +182,8 @@ const GlobalProvider = ({ children }) => {
     products,
     setProducts,
     fetchProducts,
-    fetchAllProducts
+    fetchAllProducts,
+    isFetching
   };
 
   return (
