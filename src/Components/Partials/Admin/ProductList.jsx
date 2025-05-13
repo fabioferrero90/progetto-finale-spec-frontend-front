@@ -8,8 +8,17 @@ const ProductList = ({ products }) => {
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
-
     const { isUsingAPI } = useGlobalContext()
+
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalType, setModalType] = useState('');
+    const [modalProduct, setModalProduct] = useState(null);
+
+    const handleModalOpen = useCallback((type, product) => {
+        setModalType(type);
+        setModalProduct(product);
+        setIsModalOpen(true);
+    }, []);
 
     const PRODUCTS_PER_PAGE = 3;
 
@@ -67,7 +76,6 @@ const ProductList = ({ products }) => {
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-black"
                 />
             </div>
-
             {filteredProducts.length === 0 ? (
                 <p className="text-center mt-20">Nessun prodotto trovato.</p>
             ) : (
@@ -93,13 +101,13 @@ const ProductList = ({ products }) => {
                                             <div className="flex justify-end gap-3 w-full">
                                                 <button
                                                     onClick={() => handleModalOpen('edit', product)}
-                                                    className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition-colors"
+                                                    className="px-4 py-2 bg-black text-white rounded hover:bg-blue-600 transition-colors cursor-pointer"
                                                 >
                                                     <FaEdit />
                                                 </button>
                                                 <button
                                                     onClick={() => handleModalOpen('delete', product)}
-                                                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+                                                    className="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-600 transition-colors cursor-pointer"
                                                 >
                                                     <FaRegTrashAlt />
                                                 </button>
@@ -129,6 +137,7 @@ const ProductList = ({ products }) => {
                     </div>
                 </>
             )}
+            {isModalOpen && <Modal type={modalType} product={modalProduct} closeModal={() => setIsModalOpen(false)} />}
         </>
     );
 };

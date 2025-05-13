@@ -93,6 +93,44 @@ const GlobalProvider = ({ children }) => {
     }
   }
 
+  const updateProduct = async (product, category) => {
+    category = category.toLowerCase().includes('divani') ? 'sofas' :
+      category.toLowerCase().includes('tavoli') ? 'tables' :
+        'beds';
+    try {
+      fetch(`${apiUrl}/${category}es/${product.id}`, {
+        method: 'PUT',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      })
+        .then(addNotification('Prodotto modificato', `Prodotto modificato con successo`))
+        .then(() => fetchAllProducts())
+    } catch (error) {
+      console.error('Errore nella modifica del prodotto:', error);
+    }
+  }
+
+  const deleteProduct = async (id, category) => {
+    category = category.toLowerCase().includes('divani') ? 'sofas' :
+      category.toLowerCase().includes('tavoli') ? 'tables' :
+        'beds';
+    try {
+      fetch(`${apiUrl}/${category}es/${id}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      })
+        .then(res => res.json())
+        .then(addNotification('Prodotto eliminato', `Prodotto eliminato con successo`))
+        .then(() => fetchAllProducts())
+    } catch (error) {
+      console.error('Errore nella cancellazione del prodotto:', error);
+    }
+  }
+
   const [wishlist, setWishlist] = useState(() => {
     const savedWishlist = localStorage.getItem('wishlist');
     return savedWishlist ? JSON.parse(savedWishlist) : [];
@@ -193,6 +231,8 @@ const GlobalProvider = ({ children }) => {
     setProducts,
     fetchProducts,
     fetchAllProducts,
+    deleteProduct,
+    updateProduct,
     isUsingAPI,
     setIsUsingAPI
   };

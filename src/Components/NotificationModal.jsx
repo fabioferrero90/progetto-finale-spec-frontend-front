@@ -5,9 +5,9 @@ const NotificationModal = () => {
     const { notifications } = useGlobalContext();
 
     return (
-        <div className="fixed bottom-5 left-5 flex flex-col gap-4">
+        <div className="fixed bottom-5 left-5 flex flex-col gap-4 z-99">
             {notifications.map((notification) => (
-                <div 
+                <div
                     key={notification.id}
                     className={`flex justify-between items-center gap-8 bg-white py-5 px-8 rounded-2xl shadow-2xl shadow-black transition-all duration-300 w-[85vw] lg:w-[40vw] xl:w-[20vw] translate-x-0 animate-slideIn`}
                 >
