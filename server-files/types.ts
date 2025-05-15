@@ -1,9 +1,9 @@
 export type tables = {
     title: string;
     reviews: number;
-    rating: 1 | 2 | 3 | 4 | 5 ;
+    rating: 1 | 2 | 3 | 4 | 5;
     description: string;
-    category: string;
+    category: "Tavoli e Sedie";
     price: number;
     seats: number;
     material: string;
@@ -16,9 +16,9 @@ export type tables = {
 export type sofas = {
     title: string;
     reviews: number;
-    rating: 1 | 2 | 3 | 4 | 5 ;
+    rating: 1 | 2 | 3 | 4 | 5;
     description: string;
-    category: string;
+    category: "Divani e Poltrone";
     price: number;
     seats: number;
     material: string;
@@ -31,9 +31,9 @@ export type sofas = {
 export type beds = {
     title: string;
     reviews: number;
-    rating: 1 | 2 | 3 | 4 | 5 ;
+    rating: 1 | 2 | 3 | 4 | 5;
     description: string;
-    category: string;
+    category: "Letti e Materassi";
     price: number;
     size: string;
     material: string;

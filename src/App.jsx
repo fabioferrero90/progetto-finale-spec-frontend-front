@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { GlobalProvider } from "./Contexts/GlobalContext";
 import DefaultLayout from "./Layouts/DefaultLayout";
 import Home from "./Pages/Home";
@@ -10,11 +10,26 @@ import Wishlist from "./Pages/Wishlist";
 import Compare from "./Pages/Compare";
 import Cart from "./Pages/Cart";
 import Admin from "./Pages/Admin";
+import { useEffect } from "react";
+
+
+function ScrollToTop() {
+
+  const location = useLocation();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [location.pathname]);
+
+  return (null);
+}
+
 
 const App = () => {
   return (
     <GlobalProvider>
       <BrowserRouter>
+        <ScrollToTop />
         <Routes>
           <Route element={<DefaultLayout />}>
             <Route path="/" element={<Home />} />

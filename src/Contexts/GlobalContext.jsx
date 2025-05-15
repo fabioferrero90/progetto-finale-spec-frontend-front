@@ -109,6 +109,27 @@ const GlobalProvider = ({ children }) => {
         .then(() => fetchAllProducts())
     } catch (error) {
       console.error('Errore nella modifica del prodotto:', error);
+      addNotification('Errore di modifica', 'Si è verificato un errore durante la modifica del prodotto.')
+    }
+  }
+
+  const insertProduct = async (product, category) => {
+    category = category.toLowerCase().includes('divani') ? 'sofas' :
+      category.toLowerCase().includes('tavoli') ? 'tables' :
+        'beds';
+    try {
+      fetch(`${apiUrl}/${category}es`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(product)
+      })
+        .then(addNotification('Prodotto inserito', `Prodotto inserito con successo`))
+        .then(() => fetchAllProducts())
+    } catch (error) {
+      console.error('Errore nell\'inserimento del prodotto:', error);
+      addNotification('Errore di inserimento', 'Si è verificato un errore durante l\'inserimento del prodotto.')
     }
   }
 
@@ -128,6 +149,7 @@ const GlobalProvider = ({ children }) => {
         .then(() => fetchAllProducts())
     } catch (error) {
       console.error('Errore nella cancellazione del prodotto:', error);
+      addNotification('Errore di cancellazione', 'Si è verificato un errore durante la cancellazione del prodotto.')
     }
   }
 
@@ -233,6 +255,7 @@ const GlobalProvider = ({ children }) => {
     fetchAllProducts,
     deleteProduct,
     updateProduct,
+    insertProduct,
     isUsingAPI,
     setIsUsingAPI
   };

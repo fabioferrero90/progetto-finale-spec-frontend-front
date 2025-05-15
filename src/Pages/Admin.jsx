@@ -10,12 +10,6 @@ const Admin = () => {
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
 
-    const dummyProd = {
-        title: 'Inserisci nome del prodotto',
-        description: 'Inserisci la descrizione',
-        price: 0,
-    }
-
     useEffect(() => {
         fetchAllProducts();
     }, []);
@@ -66,7 +60,7 @@ const Admin = () => {
                     <ProductList products={filteredProducts} />
                 </div>
             </div>
-            {isModalOpen && <Modal type="addproduct" product={dummyProd} closeModal={() => setIsModalOpen(false)} />}
+            {isModalOpen && <Modal type="addproduct" closeModal={() => setIsModalOpen(false)} />}
         </div>
     )
 }

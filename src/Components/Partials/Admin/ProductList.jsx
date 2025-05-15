@@ -83,12 +83,28 @@ const ProductList = ({ products }) => {
                     <div className="space-y-4">
                         {currentProducts.map((product) => (
                             <div key={product.id} className="flex bg-white p-4 rounded-lg shadow">
-                                <img
+                                {(() => {
+                                    const imgProps = {
+                                        alt: product.title,
+                                        className: "w-32 h-32 object-cover rounded",
+                                        onClick: () => navigate(`/product/${product.id}`)
+                                    };
+
+                                    if (product.image && product.image !== "") {
+                                        if (!product.image.startsWith("http")) {
+                                            return <img src={`/imgs/products/${product.image}`} {...imgProps} />;
+                                        }
+                                        return <img src={product.image} {...imgProps} />;
+                                    }
+
+                                    return <img src="/imgs/placeholder.jpg" {...imgProps} />;
+                                })()}
+                                {/* <img
                                     src={`/imgs/products/${product.image}`}
                                     alt={product.title}
                                     className="w-32 h-32 object-cover rounded"
                                     loading="lazy"
-                                />
+                                /> */}
                                 <div className="ml-4 flex-1">
                                     <div className="flex justify-between items-start">
                                         <div>

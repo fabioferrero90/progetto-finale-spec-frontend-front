@@ -13,6 +13,9 @@ const filterNames = [
     { name: 'washableCover', label: 'Sfoderabile' },
     { name: 'order', label: 'Ordina per' },
     { name: 'category', label: 'Categoria' },
+    { name: 'image', label: 'URL Immagine' },
+    { name: 'title', label: 'Titolo' },
+    { name: 'description', label: 'Descrizione' }
 ]
 
 export { filterNames };
