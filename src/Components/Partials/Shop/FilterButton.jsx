@@ -1,8 +1,9 @@
 import React from 'react';
-import { filterNames } from 'Data/FilterMapping';
+import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const FilterButton = ({ name, options, onChange }) => {
-  const label = filterNames.find(filter => filter.name === name)?.label;
+
+  const { findName } = useGlobalContext();
 
   const handleChange = (e) => {
     onChange(name, e.target.value);
@@ -17,7 +18,7 @@ const FilterButton = ({ name, options, onChange }) => {
           onChange={handleChange}
           defaultValue={'all'}
         >
-          <option className="px-2" value="all">{label}</option>
+          <option className="px-2" value="all">{findName(name)}</option>
           {options.map((item, index) => {
             if (item === "price_asc" || item === "price_desc" || item === "name_asc" || item === "name_desc") {
               let displayText;

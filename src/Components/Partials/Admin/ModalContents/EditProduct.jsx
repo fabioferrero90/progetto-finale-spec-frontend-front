@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import ProductCard from 'Shop/ProductCard';
-import { filterNames } from 'Data/FilterMapping';
 import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const EditProduct = ({ product, closeModal }) => {
 
-    const { updateProduct, isUsingAPI, addNotification } = useGlobalContext();
+    const { findName, updateProduct, isUsingAPI, addNotification } = useGlobalContext();
     const [editedProduct, setEditedProduct] = useState({
         ...product,
         price: Number(product.price)
@@ -50,7 +49,7 @@ const EditProduct = ({ product, closeModal }) => {
                                         }
                                         return (
                                             <tr key={key} className="border-b text-xs">
-                                                <td className="py-2 px-4 font-medium capitalize w-2/5">{filterNames.find(f => f.name === key)?.label}</td>
+                                                <td className="py-2 px-4 font-medium capitalize w-2/5">{findName(key)}</td>
                                                 <td className="py-2 px-4 text-nowrap">{value}</td>
                                             </tr>
                                         );
@@ -94,7 +93,7 @@ const EditProduct = ({ product, closeModal }) => {
                                         return (
                                             <div key={key} className="mb-4">
                                                 <label htmlFor={key} className="block text-sm font-medium text-gray-700 mb-1">
-                                                    {filterNames.find(f => f.name === key)?.label}
+                                                    {findName(key)}
                                                 </label>
                                                 {isYesNoField ? (
                                                     <select

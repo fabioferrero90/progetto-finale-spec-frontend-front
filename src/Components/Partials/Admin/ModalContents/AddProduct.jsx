@@ -1,11 +1,10 @@
 import React, { useState } from 'react'
 import { useGlobalContext } from 'Contexts/GlobalContext'
-import { filterNames } from 'Data/FilterMapping'
 import ProductCard from 'Shop/ProductCard'
 
 const AddProduct = ({ closeModal }) => {
 
-  const { insertProduct, isUsingAPI, addNotification } = useGlobalContext();
+  const { findName, insertProduct, isUsingAPI, addNotification } = useGlobalContext();
   const [category, setCategory] = useState('');
   const [productToAdd, setProductToAdd] = useState({});
 
@@ -54,6 +53,40 @@ const AddProduct = ({ closeModal }) => {
     }
   }
 
+  function checkIfCorrectProduct(product) {
+    const category = product.category.toLowerCase().includes('divani') ? 'sofas' :
+      product.category.toLowerCase().includes('tavoli') ? 'tables' :
+        'beds';
+    const templateProduct = productFields[category];
+    if (!templateProduct) {
+      addNotification('Errore di inserimento', 'Categoria non valida');
+      return false;
+    }
+    for (const [key, expectedValue] of Object.entries(templateProduct)) {
+      if (!(key in product)) {
+        addNotification('Errore di inserimento', `Il campo ${findName(key)} non esiste`);
+        return false;
+      }
+      if (product[key] === null || product[key] === undefined) {
+        addNotification('Errore di inserimento', `Il campo ${findName(key)} non può essere vuoto`);
+        return false;
+      }
+      if (typeof product[key] !== typeof expectedValue) {
+        addNotification('Errore di inserimento', `Il campo ${findName(key)} deve essere di tipo ${typeof expectedValue}`);
+        return false;
+      }
+      if (typeof expectedValue === 'number' && isNaN(product[key])) {
+        addNotification('Errore di inserimento', `Il campo ${findName(key)} deve essere un numero`);
+        return false;
+      }
+      if (typeof expectedValue === 'string' && product[key].trim() === '') {
+        addNotification('Errore di inserimento', `Il campo ${findName(key)} non può essere vuoto`);
+        return false;
+      }
+    }
+    return true;
+  }
+
   const handleCategoryChange = (cat) => {
     setCategory(cat);
     if (cat === "") {
@@ -78,8 +111,10 @@ const AddProduct = ({ closeModal }) => {
     if (!isUsingAPI) {
       addNotification('API Mode non attiva', 'Questa funzionalità non è disponibile senza la API Mode attiva')
     } else {
-      insertProduct(product, product.category);
-      closeModal();
+      if (checkIfCorrectProduct(product)) {
+        insertProduct(product, product.category);
+        closeModal();
+      }
     }
   }
 
@@ -101,7 +136,7 @@ const AddProduct = ({ closeModal }) => {
                     }
                     return (
                       <tr key={key} className="border-b text-xs">
-                        <td className="py-2 px-4 font-medium capitalize w-2/5">{filterNames.find(f => f.name === key)?.label}</td>
+                        <td className="py-2 px-4 font-medium capitalize w-2/5">{findName(key)}</td>
                         <td className="py-2 px-4 text-nowrap">{value}</td>
                       </tr>
                     );
@@ -139,7 +174,7 @@ const AddProduct = ({ closeModal }) => {
                     return (
                       <div key={key} className="mb-4 w-[48%] inline-block mr-[2%] last:mr-0">
                         <label htmlFor={key} className="block text-sm font-medium text-gray-700 mb-1">
-                          {filterNames.find(f => f.name === key)?.label}
+                          {findName(key)}
                         </label>
                         {isYesNoField ? (
                           <select
@@ -169,7 +204,7 @@ const AddProduct = ({ closeModal }) => {
                   return (
                     <div key={key} className="mb-4 w-full">
                       <label htmlFor={key} className="block text-sm font-medium text-gray-700 mb-1">
-                        {filterNames.find(f => f.name === key)?.label}
+                        {findName(key)}
                       </label>
                       {isYesNoField ? (
                         <select

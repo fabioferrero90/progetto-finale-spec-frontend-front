@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
+import { filterNames } from 'Data/FilterMapping'
 
 import DBbeds from 'database/beds.json'
 import DBtables from 'database/tables.json'
@@ -13,6 +14,11 @@ const GlobalProvider = ({ children }) => {
     tables: DBtables.map(table => ({ ...table, parsed: true })),
     sofas: DBsofas.map(sofa => ({ ...sofa, parsed: true }))
   };
+
+  const findName = (name) => {
+    const foundName = filterNames.find(f => f.name === name)?.label
+    return foundName || name;
+  }
 
   const [isUsingAPI, setIsUsingAPI] = useState(() => {
     const savedAPIPreference = localStorage.getItem('isUsingAPI');
@@ -235,6 +241,7 @@ const GlobalProvider = ({ children }) => {
   }, [cart]);
 
   const values = {
+    findName,
     wishlist,
     setWishlist,
     compareList,

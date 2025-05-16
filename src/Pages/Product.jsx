@@ -1,14 +1,13 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useGlobalContext } from 'Contexts/GlobalContext'
-import { filterNames } from 'Data/FilterMapping';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdCompareArrows } from 'react-icons/md';
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 
 const Product = () => {
-    const { handleAddToCart, handleAddToCompare, handleAddToWishlist, products } = useGlobalContext();
+    const { findName, handleAddToCart, handleAddToCompare, handleAddToWishlist, products } = useGlobalContext();
     const { id } = useParams();
     const product = products.find((prod) => prod.id === parseInt(id));
     const relatedProducts = products.filter((prod) => prod.category === product.category && prod.id !== product.id);
@@ -58,7 +57,7 @@ const Product = () => {
                                         }
                                         return (
                                             <tr key={key} className="border-b">
-                                                <td className="py-2 px-4 font-medium capitalize">{filterNames.find(f => f.name === key)?.label}</td>
+                                                <td className="py-2 px-4 font-medium capitalize">{findName(key)}</td>
                                                 <td className="py-2 px-4 text-nowrap">{value}</td>
                                             </tr>
                                         );

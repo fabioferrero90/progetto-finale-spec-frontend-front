@@ -1,9 +1,8 @@
 import React from 'react'
 import { useGlobalContext } from 'Contexts/GlobalContext'
-import { filterNames } from 'Data/FilterMapping';
 
 const Compare = () => {
-  const { compareList, setCompareList } = useGlobalContext()
+  const { findName, compareList, setCompareList } = useGlobalContext()
 
   return (
     <div className="container py-12">
@@ -70,7 +69,7 @@ const Compare = () => {
                   return (
                     <tr key={key}>
                       <td className="border-2 border-white p-4 font-semibold capitalize bg-gray-200 text-black">
-                        {filterNames.find(f => f.name === key)?.label}
+                        {findName(key)}
                       </td>
                       {compareList.slice(0, 5).map((product) => (
                         <td key={product.id} className="border-2 border-white p-4">

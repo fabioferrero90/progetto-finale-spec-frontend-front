@@ -2,13 +2,12 @@ import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 import FilterButton from '../Components/Partials/Shop/FilterButton';
-import { filterNames } from 'Data/FilterMapping';
 import { Categories } from 'Data/Categories'
 import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const Category = () => {
   const { category } = useParams()
-  const { fetchProducts, products, setProducts } = useGlobalContext();
+  const { findName, fetchProducts, products, setProducts } = useGlobalContext();
   const categoryData = Categories.find((cat) => cat.slug === category)
   const [filters, setFilters] = useState([])
   const [selectedFilters, setSelectedFilters] = useState([])
@@ -145,7 +144,7 @@ const Category = () => {
             {selectedFilters.length > 0 && (
               selectedFilters.map((filter, index) => (
                 <div key={index} className="text-xs px-3 bg-gray-100 flex">
-                  <span>{filterNames.find(f => f.name === filter.name)?.label}: {filter.value}</span>
+                  <span>{findName(filter.name)} : {filter.value}</span>
                   <button
                     className="remove-button ml-2 text-gray-500 border-0 rounded-2xl cursor-pointer"
                     onClick={() => {
