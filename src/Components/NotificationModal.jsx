@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 
 const NotificationModal = () => {
     const { notifications } = useGlobalContext();

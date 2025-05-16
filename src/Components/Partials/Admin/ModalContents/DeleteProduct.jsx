@@ -1,6 +1,6 @@
 import React from 'react'
-import ProductCard from '../../Shop/ProductCard';
-import { useGlobalContext } from '../../../../Contexts/GlobalContext';
+import ProductCard from 'Shop/ProductCard';
+import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const DeleteProduct = ({ product, closeModal }) => {
 

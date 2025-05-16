@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import ProductCard from '../../Shop/ProductCard';
-import { filterNames } from '../../../../Data/FilterMapping';
-import { useGlobalContext } from '../../../../Contexts/GlobalContext';
+import ProductCard from 'Shop/ProductCard';
+import { filterNames } from 'Data/FilterMapping';
+import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const EditProduct = ({ product, closeModal }) => {
 

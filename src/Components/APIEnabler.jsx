@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 
 const APIEnabler = () => {
     const [isOpen, setIsOpen] = useState(false)

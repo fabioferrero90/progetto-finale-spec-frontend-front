@@ -3,7 +3,7 @@ import { FiShoppingCart } from "react-icons/fi";
 import { FaRegHeart } from "react-icons/fa";
 import { MdCompareArrows } from "react-icons/md";
 import { IoHeartDislikeOutline } from "react-icons/io5";
-import { useGlobalContext } from "../../../Contexts/GlobalContext";
+import { useGlobalContext } from "Contexts/GlobalContext";
 import { useNavigate } from "react-router-dom";
 
 const ProductCard = ({ product, isWishlist }) => {

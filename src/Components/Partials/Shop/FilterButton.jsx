@@ -1,5 +1,5 @@
 import React from 'react';
-import { filterNames } from '../../../Data/FilterMapping';
+import { filterNames } from 'Data/FilterMapping';
 
 const FilterButton = ({ name, options, onChange }) => {
   const label = filterNames.find(filter => filter.name === name)?.label;
@@ -12,7 +12,7 @@ const FilterButton = ({ name, options, onChange }) => {
   return (
     <>
       <div className="filter-button relative mr-4">
-        <select 
+        <select
           className="flex font-bold items-center px-3 py-1 text-sm border-0 rounded-2xl hover:bg-gray-100"
           onChange={handleChange}
           defaultValue={'all'}

@@ -1,5 +1,5 @@
 import { useLocation } from 'react-router-dom'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid'
 import React, { useEffect, useMemo } from 'react'
 

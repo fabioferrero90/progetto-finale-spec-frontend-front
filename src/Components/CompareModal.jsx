@@ -1,9 +1,9 @@
 import React from 'react'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 import { useNavigate, useLocation } from 'react-router-dom'
 
 const CompareModal = () => {
-    const {compareList, setCompareList, addNotification} = useGlobalContext()
+    const { compareList, setCompareList, addNotification } = useGlobalContext()
     const navigate = useNavigate()
     const location = useLocation()
 
@@ -21,21 +21,21 @@ const CompareModal = () => {
                 <span className="pl-3 font-bold">{compareList.length}</span>
             </div>
             <div className="flex justify-end w-full">
-                <button 
+                <button
                     className="bg-blue-600 text-white ml-3 px-2 py-1 border-0 rounded-xl cursor-pointer"
                     onClick={() => navigate("/compare")}>
-                    <span className="text-nowrap">Confronta</span>  
+                    <span className="text-nowrap">Confronta</span>
                 </button>
-                <button 
+                <button
                     className="bg-gray-600 text-white ml-3 px-2 py-1 border-0 rounded-xl cursor-pointer"
                     onClick={() => {
                         setCompareList([]);
                         addNotification("Lista svuotata", "La lista dei prodotti da confrontare è stata svuotata")
                     }}>
-                        <span className="text-nowrap">Pulisci lista</span>  
+                    <span className="text-nowrap">Pulisci lista</span>
                 </button>
             </div>
-        </div> 
+        </div>
     )
 }
 

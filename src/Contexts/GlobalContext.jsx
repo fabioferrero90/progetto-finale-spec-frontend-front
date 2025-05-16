@@ -1,8 +1,8 @@
 import { createContext, useContext, useEffect, useState, useCallback } from "react";
 
-import DBbeds from '../../server-files/database/beds.json'
-import DBtables from '../../server-files/database/tables.json'
-import DBsofas from '../../server-files/database/sofas.json'
+import DBbeds from 'database/beds.json'
+import DBtables from 'database/tables.json'
+import DBsofas from 'database/sofas.json'
 
 const GlobalContext = createContext();
 const apiUrl = import.meta.env.VITE_APP_API_URL

@@ -1,5 +1,5 @@
 import React from 'react'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 
 const Cart = () => {
   const { cart, setCart, addNotification } = useGlobalContext()
@@ -36,7 +36,7 @@ const Cart = () => {
               {cart.map((item, index) => (
                 <tr key={index} className="text-center">
                   <td className="border-0 p-4">
-                    <button 
+                    <button
                       onClick={() => removeFromCart(item)}
                       className="w-8 h-8 text-xs font-bold text-red-500 hover:text-red-700 p-2 rounded-full cursor-pointer hover:bg-red-100 transition-colors"
                     >
@@ -50,37 +50,37 @@ const Cart = () => {
                   <td className="border-0 p-4 font-semibold">{item.price}€</td>
                   <td className="border-0 p-4">
                     <div className="flex items-center justify-center">
-                      <button 
-                      className="w-8 h-8 flex justify-center items-center border rounded-full p-2 mr-2 hover:bg-gray-500 hover:text-white cursor-pointer relative group"
-                      onClick={() => {
-                        const updatedCart = cart.map(cartItem => {
-                          if (cartItem === item) {
-                            return {
-                              ...cartItem,
-                              quantity: Math.max(1, cartItem.quantity - 1)
-                            };
-                          }
-                          return cartItem;
-                        });
-                        setCart(updatedCart);
-                      }}>
+                      <button
+                        className="w-8 h-8 flex justify-center items-center border rounded-full p-2 mr-2 hover:bg-gray-500 hover:text-white cursor-pointer relative group"
+                        onClick={() => {
+                          const updatedCart = cart.map(cartItem => {
+                            if (cartItem === item) {
+                              return {
+                                ...cartItem,
+                                quantity: Math.max(1, cartItem.quantity - 1)
+                              };
+                            }
+                            return cartItem;
+                          });
+                          setCart(updatedCart);
+                        }}>
                         -
                       </button>
                       <span className="w-8 text-center">{item.quantity}</span>
-                      <button 
-                      className="w-8 h-8 flex justify-center items-center border rounded-full p-2 ml-2 hover:bg-gray-500 hover:text-white cursor-pointer relative group"
-                      onClick={() => {
-                        const updatedCart = cart.map(cartItem => {
-                          if (cartItem === item) {
-                            return {
-                              ...cartItem,
-                              quantity: cartItem.quantity + 1
-                            };
-                          }
-                          return cartItem;
-                        });
-                        setCart(updatedCart);
-                      }}>
+                      <button
+                        className="w-8 h-8 flex justify-center items-center border rounded-full p-2 ml-2 hover:bg-gray-500 hover:text-white cursor-pointer relative group"
+                        onClick={() => {
+                          const updatedCart = cart.map(cartItem => {
+                            if (cartItem === item) {
+                              return {
+                                ...cartItem,
+                                quantity: cartItem.quantity + 1
+                              };
+                            }
+                            return cartItem;
+                          });
+                          setCart(updatedCart);
+                        }}>
                         +
                       </button>
                     </div>

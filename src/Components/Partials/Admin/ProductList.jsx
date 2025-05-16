@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
-import { useGlobalContext } from '../../../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
 import { useNavigate } from 'react-router-dom';
 

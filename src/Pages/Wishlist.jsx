@@ -1,9 +1,9 @@
 import React from 'react'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 
 const Wishlist = () => {
-  const { wishlist} = useGlobalContext()
+  const { wishlist } = useGlobalContext()
 
   return (
     <div className="container py-12">
@@ -18,7 +18,7 @@ const Wishlist = () => {
           </p>
         </div>
       ) : (
-          <ProductGrid products={wishlist} isWishlist={true} />
+        <ProductGrid products={wishlist} isWishlist={true} />
       )}
     </div>
   )

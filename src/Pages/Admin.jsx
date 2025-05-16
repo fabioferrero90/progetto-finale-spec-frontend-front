@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useCallback } from 'react'
-import { Categories } from '../Data/Categories'
-import { useGlobalContext } from '../Contexts/GlobalContext'
+import { Categories } from 'Data/Categories'
+import { useGlobalContext } from 'Contexts/GlobalContext'
 import ProductList from '../Components/Partials/Admin/ProductList'
 import Modal from '../Components/Partials/Admin/Modal'
 

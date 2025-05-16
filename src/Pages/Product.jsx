@@ -1,7 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useGlobalContext } from '../Contexts/GlobalContext'
-import { filterNames } from '../Data/FilterMapping';
+import { useGlobalContext } from 'Contexts/GlobalContext'
+import { filterNames } from 'Data/FilterMapping';
 import { FiShoppingCart } from 'react-icons/fi';
 import { FaRegHeart } from 'react-icons/fa';
 import { MdCompareArrows } from 'react-icons/md';

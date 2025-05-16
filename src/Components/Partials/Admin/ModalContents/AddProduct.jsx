@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
-import { useGlobalContext } from '../../../../Contexts/GlobalContext'
-import { filterNames } from '../../../../Data/FilterMapping'
-import ProductCard from '../../Shop/ProductCard'
+import { useGlobalContext } from 'Contexts/GlobalContext'
+import { filterNames } from 'Data/FilterMapping'
+import ProductCard from 'Shop/ProductCard'
 
 const AddProduct = ({ closeModal }) => {
 

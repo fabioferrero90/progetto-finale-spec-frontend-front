@@ -12,18 +12,14 @@ import Cart from "./Pages/Cart";
 import Admin from "./Pages/Admin";
 import { useEffect } from "react";
 
-
+// Funzione per scorrere la pagina al top quando si cambia la route
 function ScrollToTop() {
-
   const location = useLocation();
-
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [location.pathname]);
-
   return (null);
 }
-
 
 const App = () => {
   return (

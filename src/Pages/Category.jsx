@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import { useParams } from 'react-router-dom';
-import { Categories } from '../Data/Categories'
 import ProductGrid from '../Components/Partials/Shop/ProductGrid';
 import FilterButton from '../Components/Partials/Shop/FilterButton';
-import { filterNames } from '../Data/FilterMapping';
-import { useGlobalContext } from '../Contexts/GlobalContext';
+import { filterNames } from 'Data/FilterMapping';
+import { Categories } from 'Data/Categories'
+import { useGlobalContext } from 'Contexts/GlobalContext';
 
 const Category = () => {
   const { category } = useParams()

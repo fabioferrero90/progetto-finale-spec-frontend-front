@@ -1,6 +1,6 @@
 import React from 'react'
-import { useGlobalContext } from '../Contexts/GlobalContext'
-import { filterNames } from '../Data/FilterMapping';
+import { useGlobalContext } from 'Contexts/GlobalContext'
+import { filterNames } from 'Data/FilterMapping';
 
 const Compare = () => {
   const { compareList, setCompareList } = useGlobalContext()
@@ -33,9 +33,9 @@ const Compare = () => {
                 <td className="border-2 border-white p-4 font-semibold bg-gray-200 text-black">Immagine</td>
                 {compareList.slice(0, 5).map((product) => (
                   <td key={product.id} className="border-2 border-white p-4">
-                    <img 
-                      src={`/imgs/products/${product.image}`} 
-                      alt={product.title} 
+                    <img
+                      src={`/imgs/products/${product.image}`}
+                      alt={product.title}
                       className="w-32 h-32 object-contain mx-auto"
                     />
                   </td>
@@ -70,7 +70,7 @@ const Compare = () => {
                   return (
                     <tr key={key}>
                       <td className="border-2 border-white p-4 font-semibold capitalize bg-gray-200 text-black">
-                          {filterNames.find(f => f.name === key)?.label}
+                        {filterNames.find(f => f.name === key)?.label}
                       </td>
                       {compareList.slice(0, 5).map((product) => (
                         <td key={product.id} className="border-2 border-white p-4">

@@ -3,7 +3,7 @@ import HeaderProdCategories from "./Partials/Header/HeaderProdCategories"
 import { RiShoppingBasketLine } from "react-icons/ri";
 import { FaRegHeart, FaRegUser, FaSearch } from "react-icons/fa";
 import React, { useState, useRef, useEffect } from "react";
-import { useGlobalContext } from "../Contexts/GlobalContext";
+import { useGlobalContext } from "Contexts/GlobalContext";
 import { useNavigate, useLocation } from "react-router-dom";
 
 const Header = () => {
