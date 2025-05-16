@@ -17,7 +17,7 @@ const ProductCard = ({ product, isWishlist }) => {
         {(() => {
           const imgProps = {
             alt: product.title,
-            className: "w-full h-64 object-cover cursor-pointer",
+            className: "w-full h-64 object-cover cursor-pointer aspect-square",
             onClick: () => navigate(`/product/${product.id}`)
           };
 

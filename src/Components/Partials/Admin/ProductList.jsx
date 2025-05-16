@@ -1,24 +1,29 @@
 import React, { useState, useEffect, useMemo, useCallback } from 'react'
 import { useGlobalContext } from '../../../Contexts/GlobalContext'
 import { FaEdit, FaRegTrashAlt } from "react-icons/fa";
+import { useNavigate } from 'react-router-dom';
 
 import Modal from './Modal'
 
 const ProductList = ({ products }) => {
+    const navigate = useNavigate();
+
     const [currentPage, setCurrentPage] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
     const [debouncedSearchTerm, setDebouncedSearchTerm] = useState('');
     const { isUsingAPI } = useGlobalContext()
 
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = useCallback(() => setIsModalOpen(false), []);
+
     const [modalType, setModalType] = useState('');
     const [modalProduct, setModalProduct] = useState(null);
 
-    const handleModalOpen = useCallback((type, product) => {
+    const handleModalOpen = (type, product) => {
         setModalType(type);
         setModalProduct(product);
         setIsModalOpen(true);
-    }, []);
+    };
 
     const PRODUCTS_PER_PAGE = 3;
 
@@ -32,11 +37,7 @@ const ProductList = ({ products }) => {
 
     useEffect(() => {
         setCurrentPage(1);
-    }, [products]);
-
-    useEffect(() => {
-        setCurrentPage(1);
-    }, [debouncedSearchTerm]);
+    }, [products, debouncedSearchTerm]);
 
     const filteredProducts = useMemo(() =>
         products.filter(product =>
@@ -99,12 +100,6 @@ const ProductList = ({ products }) => {
 
                                     return <img src="/imgs/placeholder.jpg" {...imgProps} />;
                                 })()}
-                                {/* <img
-                                    src={`/imgs/products/${product.image}`}
-                                    alt={product.title}
-                                    className="w-32 h-32 object-cover rounded"
-                                    loading="lazy"
-                                /> */}
                                 <div className="ml-4 flex-1">
                                     <div className="flex justify-between items-start">
                                         <div>
@@ -153,7 +148,7 @@ const ProductList = ({ products }) => {
                     </div>
                 </>
             )}
-            {isModalOpen && <Modal type={modalType} product={modalProduct} closeModal={() => setIsModalOpen(false)} />}
+            {isModalOpen && <Modal type={modalType} product={modalProduct} closeModal={closeModal} />}
         </>
     );
 };

@@ -92,6 +92,22 @@ const AddProduct = ({ closeModal }) => {
           <div className="flex w-full gap-5">
             <div className="w-full border-1 border-black p-5 rounded-xl pointer-events-none">
               <ProductCard product={productToAdd} />
+              <table className="w-full border-collapse mt-3">
+                <tbody>
+                  {Object.entries(productToAdd).map(([key, value]) => {
+                    // Skip excluded properties
+                    if (['id', 'rating', 'reviews', 'title', 'image', 'category', 'price', 'description', 'createdAt', 'updatedAt'].includes(key)) {
+                      return null;
+                    }
+                    return (
+                      <tr key={key} className="border-b text-xs">
+                        <td className="py-2 px-4 font-medium capitalize w-2/5">{filterNames.find(f => f.name === key)?.label}</td>
+                        <td className="py-2 px-4 text-nowrap">{value}</td>
+                      </tr>
+                    );
+                  })}
+                </tbody>
+              </table>
             </div>
             <div className="w-full">
               <form>
@@ -99,7 +115,7 @@ const AddProduct = ({ closeModal }) => {
                   <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-1">Categoria</label>
                   <select
                     htmlFor="category"
-                    className="block pl-3 w-full border-0 py-3 rounded-xl font-medium hover:bg-gray-100 text-gray-700 mb-1"
+                    className="block pl-3 w-full border-1 border-gray-300 py-3 rounded-xl mr-2 font-medium hover:bg-gray-100 text-gray-700 mb-1"
                     value={category}
                     onChange={(e) => handleCategoryChange(e.target.value)}
                   >
@@ -121,7 +137,7 @@ const AddProduct = ({ closeModal }) => {
                   const halfSizeInputs = ['length', 'width', 'height', 'price', 'size', 'seats', 'color', 'material'];
                   if (halfSizeInputs.includes(key) || isYesNoField) {
                     return (
-                      <div key={key} className="mb-4 w-1/2 float-left">
+                      <div key={key} className="mb-4 w-[48%] inline-block mr-[2%] last:mr-0">
                         <label htmlFor={key} className="block text-sm font-medium text-gray-700 mb-1">
                           {filterNames.find(f => f.name === key)?.label}
                         </label>
@@ -131,7 +147,7 @@ const AddProduct = ({ closeModal }) => {
                             name={key}
                             value={value}
                             onChange={handleInputChange}
-                            className="w-full px-3 py-2 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border-1 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           >
                             <option value="Si">Si</option>
                             <option value="No">No</option>
@@ -143,7 +159,7 @@ const AddProduct = ({ closeModal }) => {
                             name={key}
                             value={value}
                             onChange={handleInputChange}
-                            className="w-full px-3 py-2 border-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                            className="w-full px-3 py-2 border-1 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           />
                         )}
                       </div>
@@ -151,7 +167,7 @@ const AddProduct = ({ closeModal }) => {
                   }
 
                   return (
-                    <div key={key} className="mb-4 clear-both">
+                    <div key={key} className="mb-4 w-full">
                       <label htmlFor={key} className="block text-sm font-medium text-gray-700 mb-1">
                         {filterNames.find(f => f.name === key)?.label}
                       </label>
@@ -161,7 +177,7 @@ const AddProduct = ({ closeModal }) => {
                           name={key}
                           value={value}
                           onChange={handleInputChange}
-                          className="w-full px-3 py-2 border-0 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border-1 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         >
                           <option value="Si">Si</option>
                           <option value="No">No</option>
@@ -172,7 +188,7 @@ const AddProduct = ({ closeModal }) => {
                           name={key}
                           value={value}
                           onChange={handleInputChange}
-                          className="w-full px-3 py-2 border-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border-1 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                           rows={4}
                         />
                       ) : (
@@ -182,7 +198,7 @@ const AddProduct = ({ closeModal }) => {
                           name={key}
                           value={value}
                           onChange={handleInputChange}
-                          className="w-full px-3 py-2 border-0 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
+                          className="w-full px-3 py-2 border-1 border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500"
                         />
                       )}
                     </div>

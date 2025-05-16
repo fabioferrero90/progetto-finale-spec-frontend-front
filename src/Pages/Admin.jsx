@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import { Categories } from '../Data/Categories'
 import { useGlobalContext } from '../Contexts/GlobalContext'
 import ProductList from '../Components/Partials/Admin/ProductList'
@@ -9,6 +9,7 @@ const Admin = () => {
     const [filteredProducts, setFilteredProducts] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState('all');
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const closeModal = useCallback(() => setIsModalOpen(false), []);
 
     useEffect(() => {
         fetchAllProducts();
@@ -22,12 +23,13 @@ const Admin = () => {
         }
     }, [selectedCategory, products]);
 
+
     return (
         <div className="container">
             <div className="flex">
                 <div className="w-64 bg-gray-100 p-4 flex flex-col">
                     <h2 className="text-lg font-semibold mb-4">Categorie</h2>
-                    <ul className="space-y-2">
+                    <ul className="space-y-2 mb-24">
                         <li>
                             <button
                                 className="w-full text-left px-4 py-2 rounded hover:bg-gray-200 cursor-pointer"
@@ -60,7 +62,7 @@ const Admin = () => {
                     <ProductList products={filteredProducts} />
                 </div>
             </div>
-            {isModalOpen && <Modal type="addproduct" closeModal={() => setIsModalOpen(false)} />}
+            {isModalOpen && <Modal type="addproduct" closeModal={closeModal} />}
         </div>
     )
 }

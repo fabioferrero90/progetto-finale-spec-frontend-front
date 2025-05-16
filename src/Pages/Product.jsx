@@ -53,7 +53,7 @@ const Product = () => {
                                 <tbody>
                                     {Object.entries(product).map(([key, value]) => {
                                         // Skip excluded properties
-                                        if (['id', 'rating', 'reviews', 'name', 'image', 'category', 'price', 'description', 'createdAt', 'updatedAt'].includes(key)) {
+                                        if (['id', 'rating', 'reviews', 'title', 'image', 'category', 'price', 'description', 'createdAt', 'updatedAt'].includes(key)) {
                                             return null;
                                         }
                                         return (

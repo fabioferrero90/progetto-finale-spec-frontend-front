@@ -6,7 +6,6 @@ import { useGlobalContext } from '../../../../Contexts/GlobalContext';
 const EditProduct = ({ product, closeModal }) => {
 
     const { updateProduct, isUsingAPI, addNotification } = useGlobalContext();
-
     const [editedProduct, setEditedProduct] = useState({
         ...product,
         price: Number(product.price)
@@ -22,13 +21,6 @@ const EditProduct = ({ product, closeModal }) => {
             ...prev,
             [name]: isNumericField ? (value === '' ? 0 : Number(value)) : value
         }))
-    }
-
-    const previewProduct = {
-        ...product,
-        title: editedProduct.title,
-        description: editedProduct.description,
-        price: editedProduct.price
     }
 
     const handleEditProduct = (e, product) => {
@@ -49,7 +41,22 @@ const EditProduct = ({ product, closeModal }) => {
                     <h2 className="text-2xl font-bold mb-4">Modifica Prodotto</h2>
                     <div className="flex justify-between gap-15">
                         <div className="pointer-events-none p-8 border-1 rounded-xl max-w-[300px]">
-                            <ProductCard product={previewProduct} />
+                            <ProductCard product={editedProduct} />
+                            <table className="w-full border-collapse mt-3">
+                                <tbody>
+                                    {Object.entries(editedProduct).map(([key, value]) => {
+                                        if (['id', 'rating', 'reviews', 'title', 'image', 'category', 'price', 'description', 'createdAt', 'updatedAt'].includes(key)) {
+                                            return null;
+                                        }
+                                        return (
+                                            <tr key={key} className="border-b text-xs">
+                                                <td className="py-2 px-4 font-medium capitalize w-2/5">{filterNames.find(f => f.name === key)?.label}</td>
+                                                <td className="py-2 px-4 text-nowrap">{value}</td>
+                                            </tr>
+                                        );
+                                    })}
+                                </tbody>
+                            </table>
                         </div>
                         <form>
                             <div>
@@ -77,7 +84,7 @@ const EditProduct = ({ product, closeModal }) => {
                                 </div>
                                 <div className="grid grid-cols-2 gap-4">
                                     {Object.entries(editedProduct).map(([key, value]) => {
-                                        if (["id", "createdAt", "updatedAt", "rating", "reviews", "parsed", "title", "description"].includes(key)) {
+                                        if (["id", "createdAt", "updatedAt", "rating", "category", "reviews", "parsed", "title", "description"].includes(key)) {
                                             return null;
                                         }
 

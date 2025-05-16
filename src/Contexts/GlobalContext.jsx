@@ -1,6 +1,4 @@
-import { createContext, useContext, useEffect } from "react";
-import { useState } from "react";
-import { useCallback } from "react";
+import { createContext, useContext, useEffect, useState, useCallback } from "react";
 
 import DBbeds from '../../server-files/database/beds.json'
 import DBtables from '../../server-files/database/tables.json'
